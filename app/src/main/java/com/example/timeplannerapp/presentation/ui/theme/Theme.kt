@@ -9,6 +9,13 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import com.example.presentation.ui.theme.material.ColorsUiType
+import com.example.presentation.ui.theme.material.ThemeUiType
+import com.example.presentation.ui.theme.tokens.LanguageUiType
+import com.example.presentation.ui.theme.tokens.fetchAppColorsType
+import com.example.presentation.ui.theme.tokens.fetchAppElevations
+import com.example.presentation.ui.theme.tokens.fetchAppLanguage
+import com.example.presentation.ui.theme.tokens.fetchCoreStrings
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -31,6 +38,21 @@ private val LightColorScheme = lightColorScheme(
     onSurface = Color(0xFF1C1B1F),
     */
 )
+
+@Composable
+fun TimePlannerTheme(
+    languageType: LanguageUiType = LanguageUiType.DEFAULT,
+    themeType : ThemeUiType = ThemeUiType.DEFAULT,
+    colors : ColorsUiType = ColorsUiType.PINK,
+    dynamicColor: Boolean = false,
+    content: @Composable () -> Unit
+){
+    val appLanguage = fetchAppLanguage(languageType)
+    val coreString = fetchCoreStrings(appLanguage)
+    val colorsType = fetchAppColorsType(themeType,colors)
+    val appElevations = fetchAppElevations()
+
+}
 
 @Composable
 fun TimePlannerAppTheme(
