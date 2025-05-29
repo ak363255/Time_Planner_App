@@ -22,3 +22,7 @@ dependencyResolutionManagement {
 rootProject.name = "TimePlannerApp"
 include(":app")
 include(":core")
+include(":core:data")
+include(":core:domain")
+include(":core:presentation")
+include(":core:utils")
