@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
                 SystemBarColor(
                     statusBarColor = Color(0xFF6200EE),     // Purple
                     navigationBarColor = Color(0xFF121212), // Dark
-                    isDarkIcon = false                    // Light icons
+                    isDarkIcon = true                    // Light icons
                 )
             }
         }
