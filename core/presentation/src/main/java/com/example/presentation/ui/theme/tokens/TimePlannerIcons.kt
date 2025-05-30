@@ -46,7 +46,7 @@ data class TimePlannerIcons(
     val keyboard: Int,
 )
 
-/*internal val baseTimePlannerIcons = TimePlannerIcons(
+internal val baseTimePlannerIcons = TimePlannerIcons(
     logo = R.drawable.ic_time_planner,
     logoCircular = R.drawable.ic_time_planner_circular,
     splashIcon = R.drawable.ic_splash,
@@ -87,11 +87,11 @@ data class TimePlannerIcons(
     check = R.drawable.ic_check,
     add = R.drawable.ic_add,
     keyboard = R.drawable.ic_keyboard_outline,
-)*/
+)
 
 val LocalTimePlannerIcons = staticCompositionLocalOf<TimePlannerIcons> {
     error("Core Icons is not provided")
 }
 
-/*
-fun fetchCoreIcons() = baseTimePlannerIcons*/
+
+fun fetchCoreIcons() = baseTimePlannerIcons

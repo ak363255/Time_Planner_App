@@ -40,4 +40,13 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //compose dependency
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.material3)
+
+    //compose navigation dep
+    implementation(libs.androidx.navigation.compose)
+
 }
