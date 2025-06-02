@@ -5,3 +5,5 @@ package com.example.utils.platform.screenmodel.contract
  */
 
 interface BaseUiEffect
+
+interface EmptyUiEffect : BaseUiEffect

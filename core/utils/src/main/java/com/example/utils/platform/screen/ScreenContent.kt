@@ -48,10 +48,10 @@ fun <S : BaseViewState, E : BaseEvent, F : BaseUiEffect, D : ScreenDependencies>
 }
 
 private fun <S : BaseViewState, E : BaseEvent, F : BaseUiEffect, D : ScreenDependencies> screenScopeSaver(
-    conttractProvider: ContractProvider<S, E, F, D>,
+    contractProvider: ContractProvider<S, E, F, D>,
 ): Saver<ScreenScope.Base<S, E, F, D>, S> = object : Saver<ScreenScope.Base<S, E, F, D>, S> {
     override fun restore(value: S): ScreenScope.Base<S, E, F, D>? {
-        return ScreenScope.Base(conttractProvider, value)
+        return ScreenScope.Base(contractProvider, value)
     }
 
     override fun SaverScope.save(value: ScreenScope.Base<S, E, F, D>): S? {

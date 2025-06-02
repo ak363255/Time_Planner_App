@@ -18,9 +18,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
 
+
             TimePlannerAppTheme{
-
-
                 SystemBarColor(
                     statusBarColor = Color(0xFF6200EE),     // Purple
                     navigationBarColor = Color(0xFF121212), // Dark
