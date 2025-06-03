@@ -22,7 +22,10 @@ sealed class MainEvent : BaseEvent {
     data object NavigateToEditor : MainEvent()
 }
 
-sealed class MainEffect : EmptyUiEffect
+sealed class MainEffect : EmptyUiEffect{
+    data object NavigateToMain: MainEffect()
+    data object NavigateToEditor: MainEffect()
+}
 
 sealed class MainAction : MainEffect(), BaseAction{
     object Navigate: MainAction()

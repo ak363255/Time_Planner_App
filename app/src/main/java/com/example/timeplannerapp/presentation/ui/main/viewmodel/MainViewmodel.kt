@@ -8,22 +8,24 @@ import com.example.timeplannerapp.presentation.ui.main.contract.MainViewState
 import com.example.utils.manager.CoroutineManager
 import com.example.utils.platform.communications.state.EffectCommunicator
 import com.example.utils.platform.screenmodel.BaseViewModel
+import com.example.utils.platform.screenmodel.work.BackgroundWorkKey
 import com.example.utils.platform.screenmodel.work.WorkScope
 
 class MainViewmodel(
      mainStateCommunicator: MainStateCommunicator,
+     mainEffectCommunicator: MainEffectCommunicator,
     coroutineManager: CoroutineManager
 
 ) : BaseViewModel<MainViewState, MainEvent, MainAction, MainEffect, MainDeps>(
     stateCommunicator = mainStateCommunicator,
-    effectCommunicator = EffectCommunicator.Empty(),
+    effectCommunicator = mainEffectCommunicator,
     coroutineManager = coroutineManager
 ){
     override suspend fun reduce(
         action: MainAction,
         currentState: MainViewState
     ): MainViewState {
-
+         return currentState // handle this
     }
 
     override suspend fun WorkScope<MainViewState, MainAction, MainEffect>.handleEvent(
@@ -31,6 +33,7 @@ class MainViewmodel(
     ) {
         when(event){
             is MainEvent.Init -> {
+                launchBackgroundWork(key = BackgroundKey.LOAD_SETTING) {  }
 
             }
             MainEvent.NavigateToEditor -> {
@@ -45,5 +48,9 @@ class MainViewmodel(
             super.init(deps)
             dispatchEvent(MainEvent.Init(deps.screenTarget))
         }
+    }
+
+    enum class BackgroundKey : BackgroundWorkKey{
+        LOAD_SETTING,NAVIGATE
     }
 }
