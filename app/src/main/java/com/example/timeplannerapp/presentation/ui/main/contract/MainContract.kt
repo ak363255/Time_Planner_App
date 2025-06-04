@@ -22,6 +22,7 @@ data class MainViewState(
 sealed class MainEvent : BaseEvent {
     data class Init(val screenTarget: DeepLinkTarget) : MainEvent()
     data object NavigateToEditor : MainEvent()
+    data object NavigateToMain : MainEvent()
 }
 
 sealed class MainEffect : EmptyUiEffect{
@@ -29,7 +30,7 @@ sealed class MainEffect : EmptyUiEffect{
     data object NavigateToEditor: MainEffect()
 }
 
-sealed class MainAction : MainEffect(), BaseAction{
+sealed class MainAction : BaseAction{
     object Navigate: MainAction()
     data class ChangeSettings(
         val language: LanguageUiType,

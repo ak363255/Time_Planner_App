@@ -1,5 +1,6 @@
 package com.example.timeplannerapp.presentation.ui.main.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.timeplannerapp.presentation.ui.main.contract.MainAction
@@ -31,14 +32,18 @@ class MainViewmodel(
     override suspend fun WorkScope<MainViewState, MainAction, MainEffect>.handleEvent(
         event: MainEvent
     ) {
+        Log.d("AK_EVENT","event ${event}")
         when (event) {
             is MainEvent.Init -> {
                 launchBackgroundWork(key = BackgroundKey.LOAD_SETTING) { }
-                sendEffect(MainEffect.NavigateToMain)
             }
 
             MainEvent.NavigateToEditor -> {
 
+            }
+
+            MainEvent.NavigateToMain -> {
+                sendEffect(MainEffect.NavigateToMain)
             }
         }
 

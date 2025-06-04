@@ -3,6 +3,7 @@ package com.example.timeplannerapp.presentation.ui.splash
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -19,25 +20,30 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.presentation.ui.theme.TimePlannerRes
 import com.example.presentation.ui.theme.material.onSplashGradient
+import com.example.presentation.ui.theme.material.splashGradientColors
 import com.example.utils.functional.Constants
 import kotlinx.coroutines.delay
 
 
 @Composable
 fun SplashContent(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onEnd : ()-> Unit
 ) {
 
     var isVisibleLogo by remember { mutableStateOf(false) }
     var isVisibleText by remember { mutableStateOf(false) }
     Box(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize().background(
+            brush = Brush.verticalGradient(splashGradientColors)
+        ),
         contentAlignment = Alignment.Center
     ) {
         Row(
@@ -71,6 +77,8 @@ fun SplashContent(
         isVisibleLogo = true
         delay(Constants.Delay.SPLASH_TEXT)
         isVisibleText = true
+        delay(Constants.Delay.SPLASH_NAV)
+        onEnd()
     }
 
 }
