@@ -17,11 +17,16 @@ import com.example.utils.platform.screenmodel.contract.BaseViewState
  */
 
 @Composable
+fun Test(content:@Composable ()->Unit){
+    content()
+}
+
+@Composable
 fun <S : BaseViewState, E : BaseEvent, F : BaseUiEffect, D : ScreenDependencies, CP : ContractProvider<S, E, F, D>> ScreenContent(
     screenModel: CP,
     initialState: S,
     dependencies: D,
-    content: @Composable ScreenScope<S, E, F, D>.(state: S) -> Unit
+    content:  @Composable ScreenScope<S, E, F, D>.(state: S) -> Unit
 ) {
     LaunchedEffect(key1 = Unit) {
         screenModel.init(dependencies)
@@ -31,6 +36,7 @@ fun <S : BaseViewState, E : BaseEvent, F : BaseUiEffect, D : ScreenDependencies,
         initialState = initialState
     )
     content.invoke(screenScope,screenScope.fetchState())
+   // content.invoke()
 }
 
 @Composable
@@ -50,11 +56,11 @@ fun <S : BaseViewState, E : BaseEvent, F : BaseUiEffect, D : ScreenDependencies>
 private fun <S : BaseViewState, E : BaseEvent, F : BaseUiEffect, D : ScreenDependencies> screenScopeSaver(
     contractProvider: ContractProvider<S, E, F, D>,
 ): Saver<ScreenScope.Base<S, E, F, D>, S> = object : Saver<ScreenScope.Base<S, E, F, D>, S> {
-    override fun restore(value: S): ScreenScope.Base<S, E, F, D>? {
+    override fun restore(value: S): ScreenScope.Base<S, E, F, D> {
         return ScreenScope.Base(contractProvider, value)
     }
 
-    override fun SaverScope.save(value: ScreenScope.Base<S, E, F, D>): S? {
+    override fun SaverScope.save(value: ScreenScope.Base<S, E, F, D>): S {
         return value.initialState
     }
 }

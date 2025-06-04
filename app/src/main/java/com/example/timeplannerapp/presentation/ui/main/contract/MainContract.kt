@@ -7,8 +7,10 @@ import com.example.utils.platform.screenmodel.contract.BaseAction
 import com.example.utils.platform.screenmodel.contract.BaseEvent
 import com.example.utils.platform.screenmodel.contract.BaseViewState
 import com.example.utils.platform.screenmodel.contract.EmptyUiEffect
+import kotlinx.parcelize.Parcelize
 
 
+@Parcelize
 data class MainViewState(
     val language: LanguageUiType = LanguageUiType.DEFAULT,
     val theme: ThemeUiType = ThemeUiType.DEFAULT,

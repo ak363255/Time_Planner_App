@@ -5,6 +5,7 @@ import android.window.SplashScreen
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -23,9 +24,11 @@ import com.example.timeplannerapp.presentation.ui.main.contract.MainViewState
 import com.example.timeplannerapp.presentation.ui.main.viewmodel.MainEffectCommunicator
 import com.example.timeplannerapp.presentation.ui.main.viewmodel.MainStateCommunicator
 import com.example.timeplannerapp.presentation.ui.main.viewmodel.MainViewmodel
+import com.example.timeplannerapp.presentation.ui.splash.SplashContent
 import com.example.timeplannerapp.presentation.ui.theme.TimePlannerAppTheme
 import com.example.utils.manager.CoroutineManager
 import com.example.utils.platform.screen.ScreenContent
+import com.example.utils.platform.screen.Test
 import com.example.utils.platform.screen.ScreenScope
 import com.example.utils.platform.screenmodel.contract.BaseViewState
 
@@ -51,17 +54,12 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = "splash"){
                         composable(route = "splash") {
-                              Splash(mainViewState)
+                              SplashContent()
                         }
                         composable(route = "main") {
 
                         }
                     }
-                    SystemBarColor(
-                        statusBarColor = Color(0xFF6200EE),     // Purple
-                        navigationBarColor = Color(0xFF121212), // Dark
-                        isDarkIcon = true                    // Light icons
-                    )
                 }
 
             }
@@ -71,7 +69,12 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun  ScreenScope<MainViewState, MainEvent, MainEffect, MainDeps>.Splash(mainViewState: MainViewState){
+               Box(
+                   modifier = Modifier.fillMaxSize()
+                       .background(color = Color.Blue)
+               ) {
 
+               }
     }
 
 
