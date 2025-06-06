@@ -1,3 +1,5 @@
 package com.example.utils.functional
 
-interface DomainFailures
+import android.os.Parcelable
+
+interface DomainFailures : Parcelable

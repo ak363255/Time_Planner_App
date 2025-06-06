@@ -1,11 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    id("kotlin-parcelize")
 }
 
 android {
-    namespace = "com.example.domain"
+    namespace = "com.example.impl"
     compileSdk = 35
 
     defaultConfig {
@@ -34,7 +33,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:utils"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
