@@ -22,9 +22,9 @@ interface SettingsWorkProcessor : FlowWorkProcessor<SettingsWorkCommand,MainActi
                 settingsEither.handle(
                     onLeftAction = {},
                     onRightAction = {
-                        val action = MainAction.ChangeSettings(
+                       /* val action = MainAction.ChangeSettings(
                             language = it.themeSettings.language
-                        )
+                        )*/
                     }
                 )
 
