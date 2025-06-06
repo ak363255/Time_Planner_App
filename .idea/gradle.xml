@@ -16,6 +16,19 @@
             <option value="$PROJECT_DIR$/core/domain" />
             <option value="$PROJECT_DIR$/core/presentation" />
             <option value="$PROJECT_DIR$/core/utils" />
+            <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/analytics" />
+            <option value="$PROJECT_DIR$/features/analytics/api" />
+            <option value="$PROJECT_DIR$/features/analytics/impl" />
+            <option value="$PROJECT_DIR$/features/editor" />
+            <option value="$PROJECT_DIR$/features/editor/api" />
+            <option value="$PROJECT_DIR$/features/editor/impl" />
+            <option value="$PROJECT_DIR$/features/home" />
+            <option value="$PROJECT_DIR$/features/home/api" />
+            <option value="$PROJECT_DIR$/features/home/impl" />
+            <option value="$PROJECT_DIR$/features/settings" />
+            <option value="$PROJECT_DIR$/features/settings/api" />
+            <option value="$PROJECT_DIR$/features/settings/impl" />
           </set>
         </option>
       </GradleProjectSettings>
