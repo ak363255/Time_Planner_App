@@ -35,7 +35,9 @@ class MainViewmodel(
         Log.d("AK_EVENT","event ${event}")
         when (event) {
             is MainEvent.Init -> {
-                launchBackgroundWork(key = BackgroundKey.LOAD_SETTING) { }
+                launchBackgroundWork(key = BackgroundKey.LOAD_SETTING) {
+
+                }
             }
 
             MainEvent.NavigateToEditor -> {
