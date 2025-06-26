@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("kotlin-parcelize")
     kotlin("plugin.serialization") version "2.1.21"
+    alias(libs.plugins.ksp.plugin)
 }
 
 android {
@@ -56,6 +57,21 @@ dependencies {
     implementation(libs.androidx.material3)
 
     implementation(libs.kotlinx.serialization.json)
+
+    implementation(libs.koin.androidx.compose)
+
+    implementation(libs.androidx.room.runtime)
+
+    // If this project uses any Kotlin source, use Kotlin Symbol Processing (KSP)
+    // See Add the KSP plugin to your project
+    ksp(libs.androidx.room.compiler)
+
+    // If this project only uses Java source, use the Java annotationProcessor
+    // No additional plugins are necessary
+    annotationProcessor(libs.androidx.room.compiler)
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation(libs.androidx.room.ktx)
 
 
     testImplementation(libs.junit)
