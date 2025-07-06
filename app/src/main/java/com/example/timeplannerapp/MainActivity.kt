@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -21,24 +21,16 @@ import com.example.timeplannerapp.presentation.ui.main.contract.MainEffect
 import com.example.timeplannerapp.presentation.ui.main.contract.MainEvent
 import com.example.timeplannerapp.presentation.ui.main.contract.MainRoute
 import com.example.timeplannerapp.presentation.ui.main.contract.MainViewState
-import com.example.timeplannerapp.presentation.ui.main.viewmodel.MainEffectCommunicator
-import com.example.timeplannerapp.presentation.ui.main.viewmodel.MainStateCommunicator
 import com.example.timeplannerapp.presentation.ui.main.viewmodel.MainViewmodel
 import com.example.timeplannerapp.presentation.ui.splash.SplashContent
 import com.example.timeplannerapp.presentation.ui.theme.TimePlannerAppTheme
-import com.example.utils.manager.CoroutineManager
 import com.example.utils.platform.screen.ScreenContent
 import com.example.utils.platform.screen.ScreenScope
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
-    val mainViewmodelFactory = MainViewmodel.MainViewModelFactory(
-        mainStateCommunicator = MainStateCommunicator.Base(),
-        mainEffectCommunicator = MainEffectCommunicator.Base(),
-        coroutineManager = CoroutineManager.Base()
-    )
-    val mainViewmodel: MainViewmodel by lazy {
-        ViewModelProvider(this,mainViewmodelFactory)[MainViewmodel::class.java]
-    }
+
+    val mainViewmodel: MainViewmodel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

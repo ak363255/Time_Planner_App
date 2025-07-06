@@ -1,6 +1,7 @@
 package com.example.timeplannerapp.application
 
 import com.example.timeplannerapp.di.modules.DataBaseModule
+import com.example.timeplannerapp.di.modules.ViewModelModule
 import com.example.utils.platform.services.AnalyticsService
 import com.example.utils.platform.services.BaseApplication
 import org.koin.android.ext.koin.androidContext
@@ -12,7 +13,7 @@ class TimePlannerApplication : BaseApplication() {
     override fun initDi() {
         startKoin {
             androidContext(this@TimePlannerApplication)
-            modules(DataBaseModule.databaseModule)
+            modules(DataBaseModule.databaseModule, ViewModelModule.module)
         }
     }
 

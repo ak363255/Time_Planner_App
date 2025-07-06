@@ -26,9 +26,9 @@
             <option value="$PROJECT_DIR$/features/home" />
             <option value="$PROJECT_DIR$/features/home/api" />
             <option value="$PROJECT_DIR$/features/home/impl" />
-            <option value="$PROJECT_DIR$/features/settings" />
-            <option value="$PROJECT_DIR$/features/settings/api" />
-            <option value="$PROJECT_DIR$/features/settings/impl" />
+            <option value="$PROJECT_DIR$/features/setting" />
+            <option value="$PROJECT_DIR$/features/setting/api" />
+            <option value="$PROJECT_DIR$/features/setting/impl" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -3,19 +3,28 @@ package com.example.timeplannerapp.presentation.ui.main.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.sqlite.throwSQLiteException
+import com.example.impl.presentation.ui.setting.contract.SettingsAction
+import com.example.impl.presentation.ui.setting.contract.SettingsEffect
+import com.example.timeplannerapp.presentation.ui.main.contract.DeepLinkTarget
 import com.example.timeplannerapp.presentation.ui.main.contract.MainAction
 import com.example.timeplannerapp.presentation.ui.main.contract.MainDeps
 import com.example.timeplannerapp.presentation.ui.main.contract.MainEffect
 import com.example.timeplannerapp.presentation.ui.main.contract.MainEvent
 import com.example.timeplannerapp.presentation.ui.main.contract.MainViewState
+import com.example.utils.functional.Either
+import com.example.utils.functional.collectAndHandle
 import com.example.utils.manager.CoroutineManager
 import com.example.utils.platform.screenmodel.BaseViewModel
 import com.example.utils.platform.screenmodel.work.BackgroundWorkKey
+import com.example.utils.platform.screenmodel.work.FlowWorkResult
 import com.example.utils.platform.screenmodel.work.WorkScope
+import kotlinx.coroutines.flow.Flow
 
 class MainViewmodel(
     mainStateCommunicator: MainStateCommunicator,
     mainEffectCommunicator: MainEffectCommunicator,
+    private val settingsWorkProcessor: SettingsWorkProcessor,
     coroutineManager: CoroutineManager
 ) : BaseViewModel<MainViewState, MainEvent, MainAction, MainEffect, MainDeps>(
     stateCommunicator = mainStateCommunicator,
@@ -25,18 +34,28 @@ class MainViewmodel(
     override suspend fun reduce(
         action: MainAction,
         currentState: MainViewState
-    ): MainViewState {
-        return currentState // handle this
-    }
+    ): MainViewState =
+        when (action) {
+            is MainAction.ChangeSettings -> currentState.copy(
+                language = action.language,
+                theme = action.theme,
+                colors = action.colors,
+                isEnableDynamicColors = action.enableDynamicColors,
+                secureMode = action.secureMode
+            )
+
+            MainAction.Navigate -> currentState
+        }
+
 
     override suspend fun WorkScope<MainViewState, MainAction, MainEffect>.handleEvent(
         event: MainEvent
     ) {
-        Log.d("AK_EVENT","event ${event}")
         when (event) {
             is MainEvent.Init -> {
                 launchBackgroundWork(key = BackgroundKey.LOAD_SETTING) {
-
+                    settingsWorkProcessor.work(SettingsWorkCommand.LoadSettings)
+                        .collectAndHandleWork()
                 }
             }
 
@@ -65,6 +84,7 @@ class MainViewmodel(
     class MainViewModelFactory(
         private val mainStateCommunicator: MainStateCommunicator,
         private val mainEffectCommunicator: MainEffectCommunicator,
+        private val settingsWorkProcessor: SettingsWorkProcessor,
         private val coroutineManager: CoroutineManager
 
     ) : ViewModelProvider.Factory {
@@ -72,6 +92,7 @@ class MainViewmodel(
             return MainViewmodel(
                 mainStateCommunicator = mainStateCommunicator,
                 mainEffectCommunicator = mainEffectCommunicator,
+                settingsWorkProcessor = settingsWorkProcessor,
                 coroutineManager = coroutineManager
             ) as T
         }

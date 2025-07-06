@@ -48,6 +48,8 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:presentation"))
     implementation(project(":core:utils"))
+    implementation(project(":features:setting:impl"))
+    implementation(project(":features:setting:api"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
@@ -59,6 +61,9 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose.navigation)
+
 
     implementation(libs.androidx.room.runtime)
 
