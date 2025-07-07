@@ -51,7 +51,10 @@ fun HomePageNavigationDrawer(
                     isAlwaysSelected = isAlwaysSelected,
                     onItemSelected = {item ->
                         onItemSelected(item)
-                        scope.launch { drawerManager.closeDrawer() }
+                        scope.launch {
+                            drawerManager.selectedItem.tryEmit(getDrawerFeatureIndex(item))
+                            drawerManager.closeDrawer()
+                        }
 
                     }
                 )
@@ -64,6 +67,13 @@ fun HomePageNavigationDrawer(
         )
     }
 
+}
+
+fun getDrawerFeatureIndex(item: HomePageDrawerItems) : Int = when(item){
+    HomePageDrawerItems.MAIN -> 0
+    HomePageDrawerItems.OVERVIEW -> 1
+    HomePageDrawerItems.TEMPLATES -> 2
+    HomePageDrawerItems.CATEGORIES -> 3
 }
 
 enum class HomePageDrawerItems : DrawerItem {

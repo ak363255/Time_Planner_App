@@ -1,5 +1,6 @@
 package com.example.timeplannerapp.presentation.ui.tabs
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -34,6 +35,7 @@ fun TabScreen(
         val state = fetchState()
         val drawerState = rememberDrawerState(DrawerValue.Closed)
         val drawerManager = rememberDrawerManager(drawerState)
+        Log.d("TAB","STATE ${state.bottomBarItem.name}")
         HomePageNavigationDrawer(
             drawerState = drawerState,
             drawerManager = drawerManager,

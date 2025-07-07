@@ -1,5 +1,6 @@
 package com.example.timeplannerapp.presentation.ui.tabs.viewmodel
 
+import android.util.Log
 import com.example.timeplannerapp.presentation.ui.tabs.contract.TabAction
 import com.example.timeplannerapp.presentation.ui.tabs.contract.TabViewState
 import com.example.timeplannerapp.presentation.ui.tabs.contract.TabsEffect
@@ -32,6 +33,7 @@ class TabScreenViewModel(
         currentState: TabViewState
     ): TabViewState = when(action){
               is TabAction.ChangeNavItems -> {
+                  Log.d("TAB","TabAction Reduce Called ${action.item.name}")
                   currentState.copy(bottomBarItem = action.item, route = action.route)
               }
           }
@@ -39,6 +41,7 @@ class TabScreenViewModel(
     override suspend fun WorkScope<TabViewState, TabAction, TabsEffect>.handleEvent(
         event: TabsEvent
     ) {
+        Log.d("TAB","Tab handle Event Called ${event}")
         when(event){
             TabsEvent.Init -> {
                 navigate(TabsBottomBarItems.HOME, route = HomePageRoute.Home)

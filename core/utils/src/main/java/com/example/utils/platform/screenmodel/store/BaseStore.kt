@@ -60,7 +60,7 @@ interface BaseStore<S: BaseViewState,E: BaseEvent,A: BaseAction,F: BaseUiEffect>
             stateCommunicator.update(state)
         }
 
-        override suspend fun handleAction(action: A) {
+        override suspend fun handleAction(action: A) = updateState{
             reducer.reduce(action,fetchState())
         }
 
