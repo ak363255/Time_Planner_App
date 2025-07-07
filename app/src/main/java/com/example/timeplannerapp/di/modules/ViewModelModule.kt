@@ -1,6 +1,5 @@
 package com.example.timeplannerapp.di.modules
 
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.data.datasources.settings.TasksSettingsLocalDataSource
 import com.example.data.repository.TasksSettingsRepositoryImpl
 import com.example.data.repository.ThemeSettingRepositoryImpl
@@ -13,9 +12,8 @@ import com.example.timeplannerapp.domain.interactors.SettingsInteractor
 import com.example.timeplannerapp.presentation.ui.main.viewmodel.MainEffectCommunicator
 import com.example.timeplannerapp.presentation.ui.main.viewmodel.MainStateCommunicator
 import com.example.timeplannerapp.presentation.ui.main.viewmodel.MainViewmodel
-import com.example.timeplannerapp.presentation.ui.main.viewmodel.MainViewmodel.MainViewModelFactory
 import com.example.timeplannerapp.presentation.ui.main.viewmodel.SettingsWorkProcessor
-import com.example.utils.manager.CoroutineManager
+import com.example.utils.managers.CoroutineManager
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 

@@ -1,7 +1,7 @@
 package com.example.utils.platform.screenmodel.work
 
 import com.example.utils.functional.Either
-import com.example.utils.manager.CoroutineBlock
+import com.example.utils.managers.CoroutineBlock
 import com.example.utils.platform.screenmodel.store.BaseStore
 import com.example.utils.platform.screenmodel.contract.BaseAction
 import com.example.utils.platform.screenmodel.contract.BaseEvent

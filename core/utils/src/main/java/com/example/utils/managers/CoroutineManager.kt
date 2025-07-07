@@ -1,4 +1,4 @@
-package com.example.utils.manager
+package com.example.utils.managers
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope

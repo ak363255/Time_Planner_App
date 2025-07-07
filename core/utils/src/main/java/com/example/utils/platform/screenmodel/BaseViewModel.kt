@@ -2,7 +2,7 @@ package com.example.utils.platform.screenmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.utils.manager.CoroutineManager
+import com.example.utils.managers.CoroutineManager
 import com.example.utils.platform.communications.state.EffectCommunicator
 import com.example.utils.platform.communications.state.StateCommunicator
 import com.example.utils.platform.screenmodel.contract.BaseAction

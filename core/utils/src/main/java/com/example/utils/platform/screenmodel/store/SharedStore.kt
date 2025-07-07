@@ -1,6 +1,6 @@
 package com.example.utils.platform.screenmodel.store
 
-import com.example.utils.manager.CoroutineManager
+import com.example.utils.managers.CoroutineManager
 import com.example.utils.platform.communications.state.EffectCommunicator
 import com.example.utils.platform.communications.state.StateCommunicator
 import com.example.utils.platform.screenmodel.Actor
