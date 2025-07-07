@@ -13,6 +13,8 @@ import com.example.timeplannerapp.presentation.ui.main.viewmodel.MainEffectCommu
 import com.example.timeplannerapp.presentation.ui.main.viewmodel.MainStateCommunicator
 import com.example.timeplannerapp.presentation.ui.main.viewmodel.MainViewmodel
 import com.example.timeplannerapp.presentation.ui.main.viewmodel.SettingsWorkProcessor
+import com.example.timeplannerapp.presentation.ui.tabs.viewmodel.TabScreenViewModel
+import com.example.timeplannerapp.presentation.ui.tabs.viewmodel.TabStateCommunicator
 import com.example.utils.managers.CoroutineManager
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
@@ -38,6 +40,8 @@ class ViewModelModule {
                 MainViewModelFactory(mainStateCommunicator = get(), mainEffectCommunicator = get(), settingsWorkProcessor = get(), coroutineManager = get())
             }*/
             viewModelOf(::MainViewmodel)
+            single<TabStateCommunicator> { TabStateCommunicator.Base() }
+            viewModelOf(::TabScreenViewModel)
         }
     }
 }

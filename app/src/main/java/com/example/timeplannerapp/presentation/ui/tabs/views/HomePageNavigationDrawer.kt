@@ -1,5 +1,6 @@
 package com.example.timeplannerapp.presentation.ui.tabs.views
 
+import android.os.Parcelable
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.ModalDrawerSheet
@@ -18,7 +19,10 @@ import com.example.presentation.ui.views.DrawerLogoSection
 import com.example.utils.managers.DrawerItem
 import com.example.utils.managers.DrawerManager
 import com.example.utils.managers.LocalDrawerManager
+import com.example.utils.platform.screenmodel.contract.BaseRoute
 import kotlinx.coroutines.launch
+import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
 
 
 @Composable
@@ -96,4 +100,24 @@ enum class HomePageDrawerItems : DrawerItem {
             get() = TimePlannerRes.strings.categoriesDrawerTitle
     },
 
+}
+sealed class HomePageRoute: BaseRoute{
+    @Parcelize
+    @Serializable
+    data object Home: HomePageRoute()
+    @Parcelize
+    @Serializable
+    data object Setting: HomePageRoute()
+    @Parcelize
+    @Serializable
+    data object Analytics : HomePageRoute()
+    @Parcelize
+    @Serializable
+    data object Overview : HomePageRoute()
+    @Parcelize
+    @Serializable
+    data object Templates: HomePageRoute()
+    @Parcelize
+    @Serializable
+    data object Categories: HomePageRoute()
 }

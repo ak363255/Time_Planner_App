@@ -23,9 +23,11 @@ import com.example.timeplannerapp.presentation.ui.main.contract.MainRoute
 import com.example.timeplannerapp.presentation.ui.main.contract.MainViewState
 import com.example.timeplannerapp.presentation.ui.main.viewmodel.MainViewmodel
 import com.example.timeplannerapp.presentation.ui.splash.SplashContent
+import com.example.timeplannerapp.presentation.ui.tabs.TabScreen
 import com.example.timeplannerapp.presentation.ui.theme.TimePlannerAppTheme
 import com.example.utils.platform.screen.ScreenContent
 import com.example.utils.platform.screen.ScreenScope
+import org.koin.androidx.compose.koinViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
@@ -49,7 +51,7 @@ class MainActivity : ComponentActivity() {
                               }
                         }
                         composable<MainRoute.Home> {
-                             Splash(mainViewState)
+                            TabScreen(tabViewModel = koinViewModel())
                         }
                     }
                     handleEffect { effect ->
