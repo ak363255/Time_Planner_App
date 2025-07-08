@@ -52,6 +52,7 @@ fun TabScreen(
             content = {
                 Scaffold(
                     content = { paddingValues ->
+
                         Box(modifier = Modifier
                             .padding(paddingValues)
                             .fillMaxSize()) {
