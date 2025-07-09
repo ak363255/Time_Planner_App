@@ -3,7 +3,6 @@ package com.example.utils.extensions
 import com.example.utils.functional.Constants
 import com.example.utils.functional.TimeRange
 import java.math.RoundingMode
-import java.time.Month
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -13,6 +12,8 @@ import kotlin.text.toFloat
 import kotlin.times
 import kotlin.to
 import kotlin.toString
+import com.example.utils.functional.Month
+import com.example.utils.functional.WeekDay
 
 fun Date.shiftDay(amount : Int,locale : Locale = Locale.getDefault()): Date{
     val calendar = Calendar.getInstance(locale).also {
@@ -271,5 +272,28 @@ fun Calendar.setStartDay() = this.apply {
 fun Date.fetchMonth(): Month {
     val calendar = Calendar.getInstance().apply { time = this@fetchMonth }
     val monthNumber = calendar.get(Calendar.MONTH)
-   // return Month.fetchByMonthNumber(monthNumber)  TODO
+    return Month.fetchByMonthNumber(monthNumber)
+}
+
+fun Date.fetchWeekDay(): WeekDay {
+    val calendar = Calendar.getInstance().apply { time = this@fetchWeekDay }
+    val weekDayNumber = calendar.get(Calendar.DAY_OF_WEEK)
+    return WeekDay.fetchByWeekDayNumber(weekDayNumber)
+}
+
+fun Date.fetchWeekNumber(): Int {
+    val calendar = Calendar.getInstance().apply { time = this@fetchWeekNumber }
+    return calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH)
+}
+fun Date.fetchDayNumberByMax(dayNumber: Int): Int {
+    val calendar = Calendar.getInstance().apply { time = this@fetchDayNumberByMax }
+    val currentDayNumber = calendar.get(Calendar.DAY_OF_MONTH)
+    val previousMonthDaysCount = calendar.setPreviousMonth().getActualMaximum(Calendar.DAY_OF_MONTH)
+    return if (dayNumber > previousMonthDaysCount) currentDayNumber + dayNumber else currentDayNumber
+}
+
+fun Date.fetchDay(): Int {
+    val calendar = Calendar.getInstance().apply { time = this@fetchDay }
+    val currentDayNumber = calendar.get(Calendar.DAY_OF_MONTH)
+    return currentDayNumber
 }
