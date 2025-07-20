@@ -50,6 +50,8 @@ dependencies {
     implementation(project(":core:utils"))
     implementation(project(":features:setting:impl"))
     implementation(project(":features:setting:api"))
+    implementation(project(":features:home:api"))
+    implementation(project(":features:home:impl"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 

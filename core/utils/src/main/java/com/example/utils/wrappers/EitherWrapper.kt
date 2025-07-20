@@ -25,12 +25,12 @@ interface EitherWrapper<F:DomainFailures>{
     }
 }
 
-interface FlowEitherWrapper<F:DomainFailures>{
-     fun <O> wrap(block : suspend () ->Flow<O>): Flow<Either<F,O>>
+interface FlowEitherWrapper<F:DomainFailures>: EitherWrapper<F>{
+     fun <O> wrapFlow(block : suspend () ->Flow<O>): Flow<Either<F,O>>
     abstract class Abstract<F:DomainFailures>(
         private val errorHandler: ErrorHandler<F>,
-    ): FlowEitherWrapper<F>{
-        override fun <O> wrap(block: suspend () -> Flow<O>): Flow<Either<F, O>> = flow{
+    ): FlowEitherWrapper<F>, EitherWrapper.Abstract<F>(errorHandler) {
+        override fun <O> wrapFlow(block: suspend () -> Flow<O>): Flow<Either<F, O>> = flow{
            block.invoke().catch { error ->
                this@flow.emit(Either.Left(data = errorHandler.handle(error)))
            } .collect{data ->

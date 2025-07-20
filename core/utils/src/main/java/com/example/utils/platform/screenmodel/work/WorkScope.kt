@@ -23,7 +23,7 @@ interface  WorkScope<S : BaseViewState, A: BaseAction,F: BaseUiEffect> : WorkRes
         block : CoroutineBlock
     ): Job
 
-    suspend fun State() : S
+    suspend fun state() : S
     suspend fun sendAction(action:A)
     suspend fun sendEffect(effect : F)
 
@@ -59,7 +59,7 @@ interface  WorkScope<S : BaseViewState, A: BaseAction,F: BaseUiEffect> : WorkRes
 
         }
 
-        override suspend fun State(): S {
+        override suspend fun state(): S {
             return  store.fetchState()
         }
 

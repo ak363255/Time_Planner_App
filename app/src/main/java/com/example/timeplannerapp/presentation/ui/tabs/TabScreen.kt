@@ -9,6 +9,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.example.impl.presentation.ui.home.contract.HomeViewState
+import com.example.impl.presentation.ui.home.views.HomeScreen
 import com.example.timeplannerapp.presentation.ui.tabs.contract.TabViewState
 import com.example.timeplannerapp.presentation.ui.tabs.contract.TabsEvent
 import com.example.timeplannerapp.presentation.ui.tabs.viewmodel.TabScreenViewModel
@@ -19,6 +21,7 @@ import com.example.timeplannerapp.presentation.ui.tabs.views.TabsBottomNavigatio
 import com.example.utils.managers.rememberDrawerManager
 import com.example.utils.platform.screen.ScreenContent
 import com.example.utils.platform.screenmodel.EmptyDeps
+import org.koin.androidx.compose.koinViewModel
 
 
 @Composable
@@ -56,7 +59,10 @@ fun TabScreen(
                         Box(modifier = Modifier
                             .padding(paddingValues)
                             .fillMaxSize()) {
-
+                            HomeScreen(
+                                screenModel = koinViewModel(),
+                                initialState = HomeViewState()
+                            )
                         }
 
                     },

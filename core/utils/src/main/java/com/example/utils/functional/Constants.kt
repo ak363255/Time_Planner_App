@@ -4,7 +4,43 @@ object Constants {
 
     object App{
         const val SPLASH_NAME = "TIME\nPLANNER"
+        const val NAME = "TimePlanner"
         const val EDITOR_DEEP_LINK = "app://timeplannercom/openEditon"
+    }
+
+    object Text {
+        const val MAX_NOTE_LENGTH = 160
+        const val MAX_LENGTH = 50
+    }
+    object Notification {
+        const val CHANNEL_ID = "timeTaskAlarmChannel"
+        const val CHANNEL_ID_NEW = "timeTaskNewAlarmChannel"
+    }
+    object Backup {
+        const val ZIP_FILE_TYPE = "application/zip"
+        const val BACKUP_ZIP_NAME = "timeplanner_backup_%s.zip"
+        const val BACKUP_JSON_NAME = "timeplanner_backup.json"
+    }
+
+    object Alarm {
+        const val ALARM_NOTIFICATION_ACTION = "ru.aleshin.ALARM_NOTIFICATION_ACTION"
+        const val NOTIFICATION_TIME_TYPE = "ALARM_DATA_TIME_TYPE"
+        const val NOTIFICATION_CATEGORY = "ALARM_DATA_CATEGORY"
+        const val NOTIFICATION_SUBCATEGORY = "ALARM_DATA_SUBCATEGORY"
+        const val NOTIFICATION_ICON = "ALARM_DATA_ICON"
+        const val APP_ICON = "ALARM_DATA_APP_ICON"
+        const val REPEAT_TIME = "REPEAT_TIME"
+        const val REPEAT_TYPE = "REPEAT_TYPE"
+        const val TEMPLATE_ID = "REPEAT_TEMPLATE_ID"
+        const val DAY_OF_MONTH = "REPEAT_DAY_OF_MONTH"
+        const val WEEK_DAY = "REPEAT_WEEK_DAY"
+        const val WEEK_NUMBER = "REPEAT_WEEK_NUMBER"
+        const val MONTH = "REPEAT_MONTH"
+    }
+
+    object Placeholder {
+        const val ITEMS = 6
+        const val MANY_ITEMS = 15
     }
 
     object Delay {

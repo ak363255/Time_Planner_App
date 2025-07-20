@@ -1,8 +1,8 @@
 package com.example.impl.presentation.ui.home.contract
 
 import com.example.domain.entities.schedules.DailyScheduleStatus
-import com.example.domain.entities.schedules.TimeTaskStatus
 import com.example.domain.entities.settings.CalendarButtonBehavior
+import com.example.domain.entities.settings.TaskSettings
 import com.example.domain.entities.settings.ViewToggleStatus
 import com.example.impl.domain.entities.HomeFailures
 import com.example.impl.presentation.models.schedules.ScheduleUi
@@ -27,7 +27,7 @@ sealed class HomeEvent : BaseEvent{
     data object Init : HomeEvent()
     data object CreateSchedule : HomeEvent()
     data object PressOverviewButton : HomeEvent()
-    data class LoadSchedule(val data : Date?) : HomeEvent()
+    data class LoadSchedule(val date : Date?) : HomeEvent()
     data class PressAddTimeTaskButton(val startTime : Date,val endTime : Date): HomeEvent()
     data class PressEditTimeTaskButton(val timeTask : TimeTaskUi) : HomeEvent()
     data class ChangeTaskDoneStateButton(val timeTask : TimeTaskUi) : HomeEvent()
@@ -39,7 +39,8 @@ sealed class HomeEffect : BaseUiEffect{
     data class ShowError(val failures : HomeFailures): HomeEffect()
 }
 sealed class HomeAction : BaseAction{
-    data class Navigate(val route : String) : HomeEvent()
-    data class UpdateSchedule(val schedule : ScheduleUi) : HomeEvent()
+    data class Navigate(val route : String) : HomeAction()
+    data class SetupSettings(val settings: TaskSettings) : HomeAction()
+    data class UpdateSchedule(val schedule : ScheduleUi) : HomeAction()
     data class SetEmptySchedule (val date : Date,val status : DailyScheduleStatus?) : HomeAction()
 }
