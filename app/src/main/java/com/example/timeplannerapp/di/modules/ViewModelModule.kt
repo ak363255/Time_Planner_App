@@ -24,13 +24,16 @@ import com.example.impl.domain.common.HomeEitherWrapper
 import com.example.impl.domain.common.HomeErrorHandler
 import com.example.impl.domain.common.SettingsEitherWrapper
 import com.example.impl.domain.common.SettingsErrorHandler
+import com.example.impl.domain.common.TimeTaskStatusChecker
 import com.example.impl.domain.interactors.ScheduleInteractor
 import com.example.impl.domain.interactors.TimeShiftInteractor
 import com.example.impl.domain.repository.FeatureScheduleRepository
 import com.example.impl.presentation.common.TimeTaskStatusController
 import com.example.impl.presentation.mappers.schedules.ScheduleDomainToUiMapper
 import com.example.impl.presentation.mappers.schedules.TimeTaskDomainToUiMapper
+import com.example.impl.presentation.ui.home.screenModel.HomeEffectCommunicator
 import com.example.impl.presentation.ui.home.screenModel.HomeScreenModel
+import com.example.impl.presentation.ui.home.screenModel.HomeStateCommunicator
 import com.example.impl.presentation.ui.home.views.ScheduleWorkProcessor
 import com.example.presentation.ui.notifications.AlarmReceiverProvider
 import com.example.presentation.ui.notifications.TimeTaskAlarmManager
@@ -70,6 +73,8 @@ class ViewModelModule {
                     eitherWrapper = get()
                 )
             }
+
+
             single<SettingsWorkProcessor> { SettingsWorkProcessor.Base(settingsInteractor = get()) }
             single<TabStateCommunicator> { TabStateCommunicator.Base() }
             /* single<MainViewModelFactory> {
@@ -165,6 +170,9 @@ class ViewModelModule {
                 )
             }
 
+            single<TimeTaskStatusChecker> {
+                TimeTaskStatusChecker.Base()
+            }
             single<TimeTaskDomainToUiMapper> {
                 TimeTaskDomainToUiMapper.Base(
                     dateManager = get(),
@@ -210,6 +218,19 @@ class ViewModelModule {
                     dateManager = get(),
                     timeTaskAlarmManager = get()
                 )
+            }
+
+            single<com.example.impl.domain.interactors.SettingsInteractor> {
+                com.example.impl.domain.interactors.SettingsInteractor.Base(
+                    tasksSettingsRepository = get(),
+                    eitherWrapper = get()
+                )
+            }
+            single<HomeStateCommunicator> {
+                HomeStateCommunicator.Base()
+            }
+            single<HomeEffectCommunicator> {
+                HomeEffectCommunicator.Base()
             }
             viewModelOf(::MainViewmodel)
             viewModelOf(::TabScreenViewModel)
