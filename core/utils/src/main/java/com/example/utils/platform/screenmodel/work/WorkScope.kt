@@ -9,6 +9,7 @@ import com.example.utils.platform.screenmodel.contract.BaseUiEffect
 import com.example.utils.platform.screenmodel.contract.BaseViewState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -18,7 +19,7 @@ interface  WorkScope<S : BaseViewState, A: BaseAction,F: BaseUiEffect> : WorkRes
 
     fun launchBackgroundWork(
         key: BackgroundWorkKey,
-        dispatcher : CoroutineDispatcher? = null,
+        dispatcher : CoroutineDispatcher?,
         scope : CoroutineScope? = null,
         block : CoroutineBlock
     ): Job

@@ -1,6 +1,8 @@
 package com.example.timeplannerapp.presentation.ui.tabs
 
 import android.util.Log
+import androidx.annotation.ColorRes
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -9,6 +11,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.example.domain.repository.TasksSettingsRepository
 import com.example.domain.repository.ThemeSettingsRepository
 import com.example.impl.domain.common.HomeEitherWrapper

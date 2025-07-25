@@ -15,6 +15,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -29,6 +30,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.impl.presentation.theme.HomeThemeRes
+import com.example.presentation.ui.theme.TimePlannerRes
+import com.example.utils.extensions.mapToDate
+import com.example.utils.extensions.startThisDay
 import java.util.Date
 
 @Composable
@@ -135,8 +139,23 @@ fun HomeDatePicker(
         DatePickerDialog(
             modifier = modifier,
             onDismissRequest = onDismiss,
-            confirmButton = {},
-            dismissButton = {}
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        val dateMilllis = datePickerDate.selectedDateMillis
+                        val date = dateMilllis?.mapToDate()?:return@TextButton
+                        onSelectedDate.invoke(date.startThisDay())
+                    },
+                    enabled = confirmEnabled
+                ){
+                    Text(text = TimePlannerRes.strings.confirmTitle)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = onDismiss) {
+                    Text(text = TimePlannerRes.strings.cancelTitle)
+                }
+            }
         ) {
             DatePicker(
                 state = datePickerDate,
