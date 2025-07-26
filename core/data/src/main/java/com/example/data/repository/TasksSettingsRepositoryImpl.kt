@@ -12,7 +12,13 @@ class TasksSettingsRepositoryImpl(
     private val localDataSource: TasksSettingsLocalDataSource
 ): TasksSettingsRepository {
     override fun fetchSettings(): Flow<TaskSettings> {
-        return localDataSource.fetchSettings().map { it.mapToDomain() }
+        return localDataSource.fetchSettings().map {it ->
+            try {
+                it.mapToDomain()
+            }catch (e: Exception){
+                 it.mapToDomain()
+            }
+        }
     }
 
     override suspend fun updateSettings(settings: TaskSettings) {

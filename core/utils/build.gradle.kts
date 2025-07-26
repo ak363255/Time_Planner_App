@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("kotlin-parcelize")
+    alias(libs.plugins.ksp.plugin)
 }
 
 android {
@@ -52,6 +53,10 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.material3)
 
+    //koin dep
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose.navigation)
     //compose navigation dep
     implementation(libs.androidx.navigation.compose)
 

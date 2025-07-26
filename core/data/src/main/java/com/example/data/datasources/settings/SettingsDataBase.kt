@@ -22,7 +22,7 @@ abstract class SettingsDataBase : RoomDatabase(){
             context = context,
             klass = SettingsDataBase::class.java,
             name = NAME,
-        ).build()
+        ).createFromAsset("database/settings_prepopulated.db").build()
 
     }
 }

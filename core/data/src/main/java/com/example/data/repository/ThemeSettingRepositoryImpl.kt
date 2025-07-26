@@ -11,7 +11,13 @@ class ThemeSettingRepositoryImpl(
     private val localDataSource: ThemeSettingsLocalDataSource
 ): ThemeSettingsRepository{
     override fun fetchSettingsFlow(): Flow<ThemeSettings> {
-        return localDataSource.fetchSettingsFlow().map {it-> it.mapToDomain() }
+        return localDataSource.fetchSettingsFlow().map {it->
+            try {
+                it.mapToDomain()
+            }catch (e: Exception){
+                it.mapToDomain()
+            }
+        }
     }
 
     override suspend fun fetchSettings(): ThemeSettings {

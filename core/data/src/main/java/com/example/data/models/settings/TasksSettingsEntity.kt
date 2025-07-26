@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.domain.entities.settings.CalendarButtonBehavior
 
-@Entity(tableName = "TaskSettings")
+@Entity(tableName = "TasksSettings")
 data class TasksSettingsEntity(
     @PrimaryKey val id: Int = 0,
     @ColumnInfo("task_view_status") val taskViewStatus: String = "COMPACT",

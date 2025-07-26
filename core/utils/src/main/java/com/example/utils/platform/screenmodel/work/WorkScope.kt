@@ -19,7 +19,7 @@ interface  WorkScope<S : BaseViewState, A: BaseAction,F: BaseUiEffect> : WorkRes
 
     fun launchBackgroundWork(
         key: BackgroundWorkKey,
-        dispatcher : CoroutineDispatcher?,
+        dispatcher : CoroutineDispatcher? = null,
         scope : CoroutineScope? = null,
         block : CoroutineBlock
     ): Job
@@ -51,7 +51,7 @@ interface  WorkScope<S : BaseViewState, A: BaseAction,F: BaseUiEffect> : WorkRes
 
             }
             return (scope?:coroutineScope).launch {
-                dispatcher?.let { withContext(it,block) }
+                dispatcher?.let { withContext(it,block) }?:block()
             }.apply {
                 backgroundWorkMap[key] = this
                 start()

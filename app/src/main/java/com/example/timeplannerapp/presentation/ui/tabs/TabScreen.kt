@@ -55,23 +55,23 @@ fun TabScreen(
         val drawerState = rememberDrawerState(DrawerValue.Closed)
         val drawerManager = rememberDrawerManager(drawerState)
         Log.d("TAB","STATE ${state.bottomBarItem.name}")
-        HomePageNavigationDrawer(
-            drawerState = drawerState,
-            drawerManager = drawerManager,
-            isAlwaysSelected = state.bottomBarItem != TabsBottomBarItems.HOME,
-            onItemSelected = { item ->
-                val event = when (item) {
-                    HomePageDrawerItems.MAIN -> TabsEvent.SelectedMainScreen
-                    HomePageDrawerItems.OVERVIEW -> TabsEvent.SelectedOverViewScreen
-                    HomePageDrawerItems.TEMPLATES -> TabsEvent.SelectedTemplateScreen
-                    HomePageDrawerItems.CATEGORIES -> TabsEvent.SelectedCategoriesScreen
-                }
-                dispatchEvent(event)
-            },
-            content = {
-                Scaffold(
-                    content = { paddingValues ->
-                        HomeTheme {
+        HomeTheme {
+            HomePageNavigationDrawer(
+                drawerState = drawerState,
+                drawerManager = drawerManager,
+                isAlwaysSelected = state.bottomBarItem != TabsBottomBarItems.HOME,
+                onItemSelected = { item ->
+                    val event = when (item) {
+                        HomePageDrawerItems.MAIN -> TabsEvent.SelectedMainScreen
+                        HomePageDrawerItems.OVERVIEW -> TabsEvent.SelectedOverViewScreen
+                        HomePageDrawerItems.TEMPLATES -> TabsEvent.SelectedTemplateScreen
+                        HomePageDrawerItems.CATEGORIES -> TabsEvent.SelectedCategoriesScreen
+                    }
+                    dispatchEvent(event)
+                },
+                content = {
+                    Scaffold(
+                        content = { paddingValues ->
                             val scheduleWorkProcessor: HomeScreenModel = koinViewModel()
                             Box(modifier = Modifier
                                 .padding(paddingValues)
@@ -81,27 +81,28 @@ fun TabScreen(
                                     initialState = HomeViewState()
                                 )
                             }
-                        }
 
-                    },
-                    bottomBar = {
-                        TabsBottomNavigationBar(
-                            selectedItem = state.bottomBarItem,
-                            onItemSelected = {tab ->
-                                val event = when(tab){
-                                    TabsBottomBarItems.HOME -> TabsEvent.SelectedHomeTab
-                                    TabsBottomBarItems.ANALYTICS -> TabsEvent.SelectedAnalyticsTab
-                                    TabsBottomBarItems.SETTINGS -> TabsEvent.SelectedSettingsTab
+
+                        },
+                        bottomBar = {
+                            TabsBottomNavigationBar(
+                                selectedItem = state.bottomBarItem,
+                                onItemSelected = {tab ->
+                                    val event = when(tab){
+                                        TabsBottomBarItems.HOME -> TabsEvent.SelectedHomeTab
+                                        TabsBottomBarItems.ANALYTICS -> TabsEvent.SelectedAnalyticsTab
+                                        TabsBottomBarItems.SETTINGS -> TabsEvent.SelectedSettingsTab
+                                    }
+                                    dispatchEvent(event)
                                 }
-                                dispatchEvent(event)
-                            }
+                            )
+                        },
+
+
                         )
-                    },
-
-
-                    )
-            }
-        )
+                }
+            )
+        }
 
     }
 
