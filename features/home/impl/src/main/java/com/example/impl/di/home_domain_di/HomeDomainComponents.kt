@@ -4,6 +4,7 @@ import com.example.impl.domain.common.HomeEitherWrapper
 import com.example.impl.domain.common.HomeErrorHandler
 import com.example.impl.domain.common.TimeTaskStatusChecker
 import com.example.impl.domain.interactors.ScheduleInteractor
+import com.example.impl.domain.interactors.TemplatesInteractor
 import com.example.impl.domain.interactors.TimeShiftInteractor
 import org.koin.dsl.module
 
@@ -29,6 +30,10 @@ internal object HomeDomainComponents {
                 templatesRepository = get(),
                 eitherWrapper = get()
             )
+        }
+        
+        single<TemplatesInteractor>{
+            TemplatesInteractor.Base(templatesRepository = get(), eitherWrapper = get())
         }
 
         single<TimeTaskStatusChecker> {

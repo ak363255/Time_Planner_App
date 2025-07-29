@@ -1,5 +1,6 @@
 package com.example.impl.presentation.ui.home.contract
 
+import android.os.Parcelable
 import com.example.domain.entities.schedules.DailyScheduleStatus
 import com.example.domain.entities.schedules.TimeTask
 import com.example.domain.entities.settings.CalendarButtonBehavior
@@ -14,9 +15,13 @@ import com.example.utils.platform.screenmodel.contract.BaseRoute
 import com.example.utils.platform.screenmodel.contract.BaseUiEffect
 import com.example.utils.platform.screenmodel.contract.BaseViewState
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
+import kotlinx.serialization.modules.contextual
 import java.util.Date
+import kotlin.reflect.KClass
 
 @Parcelize
 data class HomeViewState(
@@ -56,5 +61,11 @@ sealed class HomePageRoute : BaseRoute{
     data object HomePageMainScreen:HomePageRoute()
     @Parcelize
     @Serializable
-    data class  EditorCreatorScreen(val timeTask : TimeTask) : HomePageRoute()
+    data class  EditorCreatorScreen( val timeTask : String) : HomePageRoute()
 }
+@Serializable
+@Parcelize
+data class User(val name : String): Parcelable{
+    fun serialize(): String = Json.encodeToString(serializer(),this)
+}
+inline fun <reified T>deserialize(data: String) = Json.decodeFromString<T>(data)

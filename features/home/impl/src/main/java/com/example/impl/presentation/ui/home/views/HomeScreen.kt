@@ -8,6 +8,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -18,14 +19,19 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import com.example.domain.entities.schedules.TimeTask
 import com.example.impl.presentation.theme.HomeThemeRes
 import com.example.impl.presentation.ui.home.contract.HomeEffect
 import com.example.impl.presentation.ui.home.contract.HomeEvent
 import com.example.impl.presentation.ui.home.contract.HomePageRoute
 import com.example.impl.presentation.ui.home.contract.HomeViewState
+import com.example.impl.presentation.ui.home.contract.User
+import com.example.impl.presentation.ui.home.contract.deserialize
 import com.example.impl.presentation.ui.home.screenModel.HomeScreenModel
 import com.example.presentation.ui.views.ErrorSnackbar
 import com.example.utils.extensions.startThisDay
@@ -73,7 +79,10 @@ fun HomeScreen(
                             )
                         }
                         composable<HomePageRoute.EditorCreatorScreen> {
+                            val data = navController.currentBackStackEntry?.savedStateHandle?.toRoute<HomePageRoute.EditorCreatorScreen>()?.timeTask
+                            val user : TimeTask? = deserialize<TimeTask>(data?:"")
                             Box(modifier = Modifier.fillMaxSize().background(color = Color.Red)){
+                                Text(text = " ${user?.timeRange?.from} null",color = Color.Black, fontSize = 12.sp)
 
                             }
                         }
@@ -121,7 +130,7 @@ fun HomeScreen(
         handleEffect {
             when(it){
                 is HomeEffect.NavigateToEditorCreator -> {
-                    navController.navigate(it)
+                    navController.navigate(HomePageRoute.EditorCreatorScreen(it.timeTask.serialize()))
                 }
                 is HomeEffect.ShowError -> {}
             }

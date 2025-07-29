@@ -8,6 +8,7 @@ import com.example.utils.functional.Mapper
 import com.example.utils.functional.TimeRange
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 import java.util.Date
 @Parcelize
 @Serializable
@@ -28,5 +29,6 @@ data class TimeTask(
     val note : String? = null,
 ):Parcelable{
     fun <T> ma(mapper : Mapper<TimeTask,T>) = mapper.map(this)
+    fun serialize(): String = Json.encodeToString(serializer(),this)
 }
 
