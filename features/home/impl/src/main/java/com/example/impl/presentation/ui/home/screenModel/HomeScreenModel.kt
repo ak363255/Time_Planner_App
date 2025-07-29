@@ -5,6 +5,7 @@ import com.example.impl.presentation.ui.home.contract.HomeAction
 import com.example.impl.presentation.ui.home.contract.HomeEffect
 import com.example.impl.presentation.ui.home.contract.HomeEvent
 import com.example.impl.presentation.ui.home.contract.HomeViewState
+import com.example.utils.functional.TimeRange
 import com.example.utils.managers.CoroutineManager
 import com.example.utils.platform.screenmodel.BaseViewModel
 import com.example.utils.platform.screenmodel.EmptyDeps
@@ -13,6 +14,7 @@ import com.example.utils.platform.screenmodel.work.WorkScope
 
 class HomeScreenModel(
  private val scheduleWorkProcessor: ScheduleWorkProcessor,
+ private val navigationWorkProcessor: NavigationWorkProcessor,
     stateCommunicator : HomeStateCommunicator,
     effectCommunicator : HomeEffectCommunicator,
     coroutineManager: CoroutineManager
@@ -73,11 +75,11 @@ class HomeScreenModel(
              //   navigationWorkProcessor.work(navCommand).handleWork()
             }
             is HomeEvent.PressAddTimeTaskButton -> {
-               /* val navCommand = NavigationWorkCommand.NavigateToEditorCreator(
+                val navCommand = NavigationWorkCommand.NavigateToEditorCreator(
                     currentDate = checkNotNull(state().currentDate),
                     timeRange = TimeRange(event.startTime, event.endTime),
                 )
-                navigationWorkProcessor.work(navCommand).handleWork()*/
+                navigationWorkProcessor.work(navCommand).handleWork()
             }
             is HomeEvent.PressOverviewButton -> {
                /* val navCommand = NavigationWorkCommand.NavigateToOverview
@@ -90,7 +92,6 @@ class HomeScreenModel(
         action: HomeAction,
         currentState: HomeViewState
     ): HomeViewState =  when (action) {
-        is HomeAction.Navigate -> currentState.copy()
         is HomeAction.SetupSettings -> currentState.copy(
         taskViewStatus = action.settings.taskViewStatus,
         calendarButtonBehavior = action.settings.calendarButtonBehavior,

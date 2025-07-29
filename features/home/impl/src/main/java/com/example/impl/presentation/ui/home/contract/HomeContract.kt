@@ -1,6 +1,7 @@
 package com.example.impl.presentation.ui.home.contract
 
 import com.example.domain.entities.schedules.DailyScheduleStatus
+import com.example.domain.entities.schedules.TimeTask
 import com.example.domain.entities.settings.CalendarButtonBehavior
 import com.example.domain.entities.settings.TaskSettings
 import com.example.domain.entities.settings.ViewToggleStatus
@@ -9,9 +10,12 @@ import com.example.impl.presentation.models.schedules.ScheduleUi
 import com.example.impl.presentation.models.schedules.TimeTaskUi
 import com.example.utils.platform.screenmodel.contract.BaseAction
 import com.example.utils.platform.screenmodel.contract.BaseEvent
+import com.example.utils.platform.screenmodel.contract.BaseRoute
 import com.example.utils.platform.screenmodel.contract.BaseUiEffect
 import com.example.utils.platform.screenmodel.contract.BaseViewState
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.modules.SerializersModule
 import java.util.Date
 
 @Parcelize
@@ -37,10 +41,20 @@ sealed class HomeEvent : BaseEvent{
 }
 sealed class HomeEffect : BaseUiEffect{
     data class ShowError(val failures : HomeFailures): HomeEffect()
+    data class NavigateToEditorCreator(val timeTask : TimeTask) : HomeEffect()
 }
 sealed class HomeAction : BaseAction{
-    data class Navigate(val route : String) : HomeAction()
     data class SetupSettings(val settings: TaskSettings) : HomeAction()
     data class UpdateSchedule(val schedule : ScheduleUi) : HomeAction()
     data class SetEmptySchedule (val date : Date,val status : DailyScheduleStatus?) : HomeAction()
+}
+@Serializable
+@Parcelize
+sealed class HomePageRoute : BaseRoute{
+    @Parcelize
+    @Serializable
+    data object HomePageMainScreen:HomePageRoute()
+    @Parcelize
+    @Serializable
+    data class  EditorCreatorScreen(val timeTask : TimeTask) : HomePageRoute()
 }

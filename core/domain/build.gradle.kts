@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     id("kotlin-parcelize")
+    kotlin("plugin.serialization") version "2.1.21"
     alias(libs.plugins.ksp.plugin)
 }
 
@@ -48,4 +49,7 @@ dependencies {
     implementation(libs.koin.androidx.compose)
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose.navigation)
+
+    //kotlin serialization
+    implementation(libs.kotlinx.serialization.json)
 }

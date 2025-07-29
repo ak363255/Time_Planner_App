@@ -1,11 +1,16 @@
 package com.example.domain.entities.schedules
 
+import android.os.Parcelable
 import com.example.utils.extensions.shiftDay
 import com.example.utils.extensions.shiftHours
 import com.example.utils.extensions.shiftMillis
 import com.example.utils.extensions.shiftMinutes
 import com.example.utils.functional.TimeRange
+import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
 
+@Serializable
+@Parcelize
 data class TaskNotifications(
     val fifteenMinutesBefore : Boolean = false,
     val oneHourBefore: Boolean = false,
@@ -13,7 +18,7 @@ data class TaskNotifications(
     val oneDayBefore: Boolean = false,
     val oneWeekBefore: Boolean = false,
     val beforeEnd: Boolean = false,
-){
+):Parcelable{
     fun toTypes(enabledNotifications: Boolean) = mutableListOf<TaskNotificationType>().apply {
         if (enabledNotifications) {
             add(TaskNotificationType.START)
