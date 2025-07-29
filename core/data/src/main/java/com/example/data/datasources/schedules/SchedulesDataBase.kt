@@ -44,6 +44,6 @@ abstract class SchedulesDataBase : RoomDatabase(){
             context = context,
             klass = SchedulesDataBase::class.java,
             name = NAME,
-        ).build()
+        ).createFromAsset("database/categories_prepopulate.db").build()
     }
 }

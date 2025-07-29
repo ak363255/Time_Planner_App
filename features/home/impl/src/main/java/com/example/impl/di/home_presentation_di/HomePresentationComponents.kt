@@ -6,7 +6,7 @@ import com.example.impl.presentation.mappers.schedules.TimeTaskDomainToUiMapper
 import com.example.impl.presentation.ui.home.screenModel.HomeEffectCommunicator
 import com.example.impl.presentation.ui.home.screenModel.HomeScreenModel
 import com.example.impl.presentation.ui.home.screenModel.HomeStateCommunicator
-import com.example.impl.presentation.ui.home.views.ScheduleWorkProcessor
+import com.example.impl.presentation.ui.home.screenModel.ScheduleWorkProcessor
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 

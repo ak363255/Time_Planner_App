@@ -1,11 +1,15 @@
 package com.example.impl.presentation.ui.home.views
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.VisibilityThreshold
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.slideInVertically
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,11 +18,18 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -26,13 +37,18 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.example.domain.entities.schedules.DailyScheduleStatus
 import com.example.domain.entities.schedules.TimeTaskStatus
 import com.example.domain.entities.settings.ViewToggleStatus
 import com.example.impl.presentation.models.schedules.TimeTaskUi
+import com.example.impl.presentation.theme.HomeThemeRes
 import com.example.impl.presentation.ui.home.contract.HomeViewState
+import com.example.presentation.ui.theme.TimePlannerRes
 import com.example.presentation.ui.views.ViewToggle
+import com.example.utils.extensions.endThisDay
+import com.example.utils.extensions.isCurrentDay
 import com.example.utils.extensions.isNotZeroDifference
 import com.example.utils.extensions.shiftDay
 import java.text.SimpleDateFormat
@@ -232,8 +248,56 @@ fun TimeTasksSection(
                     }
 
                 }
+                item {
+                    val startTime = when (timeTasks.isEmpty()) {
+                        true -> checkNotNull(currentDate)
+                        false -> timeTasks.last().endTime
+                    }
+                    val endTime = startTime.endThisDay()
+                    AddTimeTaskViewItem(
+                        modifier = Modifier,
+                        enabled = timeTasks.isEmpty() || timeTasks.last().endTime.isCurrentDay(currentDate!!),
+                        onAddClick = { onTimeTaskAdd(startTime, endTime) },
+                        startTime = startTime,
+                        endTime = endTime,
+                    )
+                }
+                item { EmptyItem() }
 
-
+            }
+        }
+        else if (currentDate != null) {
+            EmptyDateView(
+                modifier = Modifier.align(Alignment.Center),
+                emptyTitle = TimePlannerRes.strings.emptyScheduleTitle,
+                subTitle = null,
+            ) {
+                OutlinedButton(
+                    onClick = onCreateSchedule,
+                    modifier = Modifier.width(185.dp),
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        contentColor = MaterialTheme.colorScheme.secondary,
+                    ),
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
+                    contentPadding = PaddingValues(horizontal = 4.dp),
+                ) {
+                    Icon(
+                        modifier = Modifier
+                            .size(18.dp)
+                            .align(Alignment.CenterVertically),
+                        imageVector = Icons.Default.Add,
+                        contentDescription = HomeThemeRes.strings.createScheduleDesc,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    Text(
+                        modifier = Modifier
+                            .padding(start = 4.dp)
+                            .align(Alignment.CenterVertically),
+                        text = HomeThemeRes.strings.createScheduleTitle,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
+                }
             }
         }
 

@@ -5,8 +5,6 @@ import com.example.impl.presentation.ui.home.contract.HomeAction
 import com.example.impl.presentation.ui.home.contract.HomeEffect
 import com.example.impl.presentation.ui.home.contract.HomeEvent
 import com.example.impl.presentation.ui.home.contract.HomeViewState
-import com.example.impl.presentation.ui.home.views.ScheduleWorkCommand
-import com.example.impl.presentation.ui.home.views.ScheduleWorkProcessor
 import com.example.utils.managers.CoroutineManager
 import com.example.utils.platform.screenmodel.BaseViewModel
 import com.example.utils.platform.screenmodel.EmptyDeps
