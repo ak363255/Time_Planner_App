@@ -33,6 +33,8 @@ import com.example.impl.presentation.ui.home.contract.HomeViewState
 import com.example.impl.presentation.ui.home.contract.User
 import com.example.impl.presentation.ui.home.contract.deserialize
 import com.example.impl.presentation.ui.home.screenModel.HomeScreenModel
+import com.example.presentation.ui.contract.MainRoute
+import com.example.presentation.ui.theme.tokens.MainNavController
 import com.example.presentation.ui.views.ErrorSnackbar
 import com.example.utils.extensions.startThisDay
 import com.example.utils.managers.LocalDrawerManager
@@ -48,11 +50,13 @@ fun HomeScreen(
     screenModel: HomeScreenModel,
     initialState: HomeViewState = HomeViewState()
 ) {
+
     ScreenContent(
         screenModel = screenModel,
         initialState = initialState,
         dependencies = EmptyDeps
     ) { state ->
+        val mainNavController = MainNavController.current
         val scope = rememberCoroutineScope()
         val snackbarState = remember { SnackbarHostState() }
         var isDateDialogShow by rememberSaveable { mutableStateOf(false) }
@@ -77,14 +81,6 @@ fun HomeScreen(
                                 onTimeTaskReduce = { dispatchEvent(HomeEvent.TimeTaskShiftDown(it)) },
                                 onChangeToggleStatus = { dispatchEvent(HomeEvent.PressViewToggleButton(it)) },
                             )
-                        }
-                        composable<HomePageRoute.EditorCreatorScreen> {
-                            val data = navController.currentBackStackEntry?.savedStateHandle?.toRoute<HomePageRoute.EditorCreatorScreen>()?.timeTask
-                            val user : TimeTask? = deserialize<TimeTask>(data?:"")
-                            Box(modifier = Modifier.fillMaxSize().background(color = Color.Red)){
-                                Text(text = " ${user?.timeRange?.from} null",color = Color.Black, fontSize = 12.sp)
-
-                            }
                         }
                     }
 
@@ -130,7 +126,8 @@ fun HomeScreen(
         handleEffect {
             when(it){
                 is HomeEffect.NavigateToEditorCreator -> {
-                    navController.navigate(HomePageRoute.EditorCreatorScreen(it.timeTask.serialize()))
+                    mainNavController.navigate(MainRoute.NavigateToEditorCreator)
+                    //navController.navigate(HomePageRoute.EditorCreatorScreen(it.timeTask.serialize()))
                 }
                 is HomeEffect.ShowError -> {}
             }

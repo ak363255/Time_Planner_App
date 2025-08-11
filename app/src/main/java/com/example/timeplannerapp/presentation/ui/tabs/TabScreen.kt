@@ -9,6 +9,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.rememberNavController
 import com.example.impl.presentation.theme.HomeTheme
 import com.example.impl.presentation.ui.home.contract.HomeViewState
 import com.example.impl.presentation.ui.home.screenModel.HomeScreenModel
@@ -41,6 +42,7 @@ fun TabScreen(
         val drawerState = rememberDrawerState(DrawerValue.Closed)
         val drawerManager = rememberDrawerManager(drawerState)
         Log.d("TAB","STATE ${state.bottomBarItem.name}")
+        val mainNavController = rememberNavController()
         HomeTheme {
             HomePageNavigationDrawer(
                 drawerState = drawerState,

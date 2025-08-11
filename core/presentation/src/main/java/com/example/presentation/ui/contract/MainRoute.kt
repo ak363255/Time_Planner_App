@@ -1,4 +1,4 @@
-package com.example.timeplannerapp.presentation.ui.main.contract
+package com.example.presentation.ui.contract
 
 import com.example.utils.platform.screenmodel.contract.BaseRoute
 import kotlinx.parcelize.Parcelize
@@ -13,4 +13,7 @@ sealed class MainRoute : BaseRoute
     @Parcelize
     @Serializable
     data object Home : MainRoute()
+    @Parcelize
+    @Serializable
+    data object NavigateToEditorCreator : MainRoute()
 }

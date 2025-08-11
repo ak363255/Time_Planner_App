@@ -20,14 +20,36 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+    flavorDimensions  += "version"
+    productFlavors {
+        create("dev") {
+            dimension = "version"
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
+            resValue("string", "app_name", "MyApp Dev")
+            buildConfigField("String", "BASE_URL", "\"https://dev.api.com/\"")
+        }
+        create("staging") {
+            dimension = "version"
+            applicationIdSuffix = ".staging"
+            versionNameSuffix = "-staging"
+            resValue("string", "app_name", "MyApp Staging")
+            buildConfigField("String", "BASE_URL", "\"https://staging.api.com/\"")
+        }
+        create("prod") {
+            dimension = "version"
+            resValue("string", "app_name", "MyApp")
+            buildConfigField("String", "BASE_URL", "\"https://api.com/\"")
+        }
+    }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+        getByName("debug") {
+            isDebuggable = true
+        }
+        getByName("release") {
+            isMinifyEnabled = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
@@ -39,7 +61,16 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
+
     }
+    externalNativeBuild{
+        cmake{
+            path = file("cpp/CMakeLists.txt")
+            version = "3.22.1"
+        }
+    }
+    ndkVersion = "29.0.13846066"
 }
 
 dependencies {

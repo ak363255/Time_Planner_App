@@ -2,6 +2,7 @@ package com.example.presentation.ui.theme.tokens
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.navigation.NavController
 import com.example.presentation.ui.theme.material.ColorsUiType
 import com.example.presentation.ui.theme.material.ThemeUiType
 
@@ -14,6 +15,8 @@ data class TimePlannerColorsType(
 val LocalTimePlannerColorsType = staticCompositionLocalOf<TimePlannerColorsType>{
     error("Colors type is not provided")
 }
+
+val MainNavController = staticCompositionLocalOf<NavController> { error("Not provided") }
 
 @Composable
 fun fetchAppColorsType(

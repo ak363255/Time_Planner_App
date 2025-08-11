@@ -59,9 +59,7 @@ sealed class HomePageRoute : BaseRoute{
     @Parcelize
     @Serializable
     data object HomePageMainScreen:HomePageRoute()
-    @Parcelize
-    @Serializable
-    data class  EditorCreatorScreen( val timeTask : String) : HomePageRoute()
+
 }
 @Serializable
 @Parcelize

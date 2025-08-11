@@ -36,7 +36,6 @@ interface NavigationWorkProcessor :
         private fun navigateToEditorCreator(date : Date,timeRange: TimeRange): WorkResult<HomeAction, HomeEffect> {
             val timeTask = TimeTask(date = date, category = MainCategory(), createdAt = Date(), timeRange = timeRange)
             return EffectResult(HomeEffect.NavigateToEditorCreator(timeTask))
-
         }
     }
 

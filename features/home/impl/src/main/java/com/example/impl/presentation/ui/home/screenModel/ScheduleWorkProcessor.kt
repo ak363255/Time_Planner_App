@@ -15,6 +15,7 @@ import com.example.impl.presentation.ui.home.contract.HomeAction
 import com.example.impl.presentation.ui.home.contract.HomeEffect
 import com.example.presentation.ui.notifications.TimeTaskAlarmManager
 import com.example.utils.functional.Constants
+import com.example.utils.functional.Either
 import com.example.utils.functional.collectAndHandle
 import com.example.utils.functional.handle
 import com.example.utils.functional.rightOrElse
@@ -27,6 +28,7 @@ import com.example.utils.platform.screenmodel.work.WorkCommand
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
@@ -140,9 +142,9 @@ interface ScheduleWorkProcessor : FlowWorkProcessor<ScheduleWorkCommand, HomeAct
             )
         }
 
-        private suspend fun createScheduleWork(date: Date) = flow {
+        private suspend fun createScheduleWork(date: Date): Flow<Either<HomeAction, HomeEffect>> = flow {
             scheduleInteractor.createSchedule(date).handle(
-                onLeftAction = { emit(EffectResult(HomeEffect.ShowError(it))) },
+                //onLeftAction = { emit(EffectResult(HomeEffect.ShowError(it))) },
             )
         }
 
