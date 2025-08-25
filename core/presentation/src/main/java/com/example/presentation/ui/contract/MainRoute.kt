@@ -15,5 +15,5 @@ sealed class MainRoute : BaseRoute
     data object Home : MainRoute()
     @Parcelize
     @Serializable
-    data object NavigateToEditorCreator : MainRoute()
+    data class NavigateToEditorCreator(val timeTask: String) : MainRoute()
 }

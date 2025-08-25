@@ -6,6 +6,7 @@ import com.example.data.datasources.settings.TasksSettingsLocalDataSource
 import com.example.data.datasources.templates.TemplatesLocalDataSource
 import com.example.data.mappers.schedules.ScheduleDataToDomainMapper
 import com.example.data.repository.ThemeSettingsLocalDataSource
+import com.example.impl.di.data_di.editorLocalDataSourcesDependencies
 import org.koin.dsl.module
 
 object AppDataModule {
