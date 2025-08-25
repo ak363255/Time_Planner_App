@@ -21,7 +21,7 @@ interface NavigationWorkProcessor :
     WorkProcessor<NavigationWorkCommand, HomeAction, HomeEffect> {
 
     class Base(
-        private val templateInteractor : TemplatesInteractor
+        private val templateInteractor : TemplatesInteractor,
     ): NavigationWorkProcessor{
         override suspend fun work(command: NavigationWorkCommand): WorkResult<HomeAction, HomeEffect> = when(command) {
             is NavigationWorkCommand.NavigateToEditor -> {

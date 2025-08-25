@@ -62,7 +62,6 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
-
     }
     externalNativeBuild{
         cmake{
@@ -83,6 +82,9 @@ dependencies {
     implementation(project(":features:setting:api"))
     implementation(project(":features:home:api"))
     implementation(project(":features:home:impl"))
+
+    implementation(project(":features:editor:api"))
+    implementation(project(":features:editor:impl"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 

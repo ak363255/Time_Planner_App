@@ -66,4 +66,3 @@ sealed class HomePageRoute : BaseRoute{
 data class User(val name : String): Parcelable{
     fun serialize(): String = Json.encodeToString(serializer(),this)
 }
-inline fun <reified T>deserialize(data: String) = Json.decodeFromString<T>(data)

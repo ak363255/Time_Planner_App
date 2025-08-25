@@ -1,5 +1,6 @@
 package com.example.timeplannerapp.application
 
+import com.example.impl.di.EditorModule
 import com.example.impl.di.HomeModules
 import com.example.impl.di.SettingModules
 import com.example.timeplannerapp.di.modules.AppModules
@@ -19,7 +20,9 @@ class TimePlannerApplication : BaseApplication() {
                 CoreUtilModules.provideCoreUtilDep() +
                         AppModules.provideAppModules() +
                         HomeModules.provideHomeDep() +
-                        SettingModules.provideSettingDep()
+                        SettingModules.provideSettingDep() +
+                        EditorModule.provideDependencies()
+
             )
         }
     }
