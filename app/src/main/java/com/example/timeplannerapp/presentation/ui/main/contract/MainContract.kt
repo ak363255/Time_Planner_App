@@ -38,5 +38,6 @@ sealed class MainAction : BaseAction{
         val colors: ColorsUiType,
         val enableDynamicColors : Boolean,
         val secureMode : Boolean
+
     ): MainAction()
 }
