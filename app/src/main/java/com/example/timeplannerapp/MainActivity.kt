@@ -19,6 +19,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
+import com.example.domain.entities.schedules.TimeTask
 import com.example.domain.repository.TasksSettingsRepository
 import com.example.domain.repository.ThemeSettingsRepository
 import com.example.impl.domain.common.SettingsEitherWrapper
@@ -35,6 +36,7 @@ import com.example.timeplannerapp.presentation.ui.main.viewmodel.SettingsWorkPro
 import com.example.timeplannerapp.presentation.ui.splash.SplashContent
 import com.example.timeplannerapp.presentation.ui.tabs.TabScreen
 import com.example.timeplannerapp.presentation.ui.theme.TimePlannerAppTheme
+import com.example.utils.functional.deserialize
 import com.example.utils.platform.screen.ScreenContent
 import com.example.utils.platform.screen.ScreenScope
 import org.koin.android.ext.android.getKoin
@@ -74,7 +76,10 @@ class MainActivity : ComponentActivity() {
                             composable<MainRoute.Home> {
                                 TabScreen(tabViewModel = koinViewModel())
                             }
-                            composable<MainRoute.NavigateToEditorCreator> {
+                            composable<MainRoute.NavigateToEditorCreator> {backStackEntry ->
+
+                                val timeTask = backStackEntry.arguments?.getString("timeTask")
+                                val timeTaskModel : TimeTask? = if(timeTask != null) deserialize(timeTask) else null
                                 Box(modifier = Modifier.fillMaxSize().background(color = Color.Red)){
                                  //   Text(text = " ${user?.timeRange?.from} null",color = Color.Black, fontSize = 12.sp)
 
