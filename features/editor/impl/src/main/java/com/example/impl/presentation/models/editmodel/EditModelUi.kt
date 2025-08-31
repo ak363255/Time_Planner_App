@@ -2,14 +2,14 @@ package com.example.impl.presentation.models.editmodel
 
 import android.os.Parcelable
 import com.example.domain.entities.Template.RepeatTime
-import com.example.impl.presentation.models.categories.MainCategoryUi
-import com.example.impl.presentation.models.categories.SubCategoryUi
+import com.example.impl.presentation.models.categories.editor.MainCategoryUi
+import com.example.impl.presentation.models.categories.editor.SubCategoryUi
 import com.example.utils.extensions.duration
 import com.example.utils.functional.TimeRange
 import kotlinx.parcelize.Parcelize
 import java.util.Date
 @Parcelize
-data class EditModelUi(
+internal data class EditModelUi(
     val key : Long = 0L,
     val date : Date,
     val timeRange: TimeRange,

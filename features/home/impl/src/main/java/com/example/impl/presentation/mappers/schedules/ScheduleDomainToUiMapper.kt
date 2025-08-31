@@ -6,7 +6,7 @@ import com.example.utils.extensions.mapToDate
 import com.example.utils.functional.Mapper
 import com.example.utils.managers.DateManager
 
-interface ScheduleDomainToUiMapper  : Mapper<Schedule, ScheduleUi>{
+ interface ScheduleDomainToUiMapper  : Mapper<Schedule, ScheduleUi>{
     class Base(
         private val timeTaskMapperToUi : TimeTaskDomainToUiMapper,
         private val dateManager : DateManager
@@ -25,7 +25,7 @@ interface ScheduleDomainToUiMapper  : Mapper<Schedule, ScheduleUi>{
     }
 }
 
-fun ScheduleUi.mapToDomain() = Schedule(
+internal fun ScheduleUi.mapToDomain() = Schedule(
     date = date.time,
     status = dateStatus,
     timeTasks = timeTasks.map { it.mapToDomain() }

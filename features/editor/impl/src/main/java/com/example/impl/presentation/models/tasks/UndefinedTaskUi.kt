@@ -2,15 +2,15 @@ package com.example.impl.presentation.models.tasks
 
 import android.os.Parcelable
 import com.example.domain.entities.schedules.TaskPriority
-import com.example.impl.presentation.models.categories.MainCategoryUi
-import com.example.impl.presentation.models.categories.SubCategoryUi
+import com.example.impl.presentation.models.categories.editor.MainCategoryUi
+import com.example.impl.presentation.models.categories.editor.SubCategoryUi
 import com.example.impl.presentation.models.editmodel.EditModelUi
 import com.example.impl.presentation.models.editmodel.EditParameters
 import com.example.utils.functional.TimeRange
 import kotlinx.parcelize.Parcelize
 import java.util.Date
 @Parcelize
-data class UndefinedTaskUi(
+internal data class UndefinedTaskUi(
     val id:Long = 0L,
     val createdAt : Date? = null,
     val deadline : Date? = null,
@@ -20,7 +20,7 @@ data class UndefinedTaskUi(
     val note : String? = null,
 ): Parcelable
 
-fun UndefinedTaskUi.convertToEditModel(
+internal fun UndefinedTaskUi.convertToEditModel(
     scheduleDate : Date,
     timeRange : TimeRange
 ) = EditModelUi(

@@ -42,8 +42,8 @@ interface NavigationWorkProcessor :
 }
 
 sealed class NavigationWorkCommand : WorkCommand {
-    object NavigateToOverview : NavigationWorkCommand()
-    data class NavigateToEditor(val timeTask: TimeTaskUi) : NavigationWorkCommand()
-    data class NavigateToEditorCreator(val currentDate: Date, val timeRange: TimeRange) :
+    internal object NavigateToOverview : NavigationWorkCommand()
+    internal data class NavigateToEditor(val timeTask: TimeTaskUi) : NavigationWorkCommand()
+    internal data class NavigateToEditorCreator(val currentDate: Date, val timeRange: TimeRange) :
         NavigationWorkCommand()
 }

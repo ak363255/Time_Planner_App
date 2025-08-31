@@ -7,7 +7,7 @@ import com.example.presentation.ui.mappers.mapToName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class MainCategoryUi(
+ data class MainCategoryUi(
     val id : Int = 0,
     val customName : String? = null,
     val defaultType : DefaultCategoryType? = DefaultCategoryType.EMPTY
@@ -18,3 +18,4 @@ data class MainCategoryUi(
         false -> defaultType?.mapToName()
     }
 }
+//1

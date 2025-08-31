@@ -12,7 +12,7 @@ import com.example.utils.platform.screenmodel.EmptyDeps
 import com.example.utils.platform.screenmodel.work.BackgroundWorkKey
 import com.example.utils.platform.screenmodel.work.WorkScope
 
-class HomeScreenModel(
+ class HomeScreenModel(
  private val scheduleWorkProcessor: ScheduleWorkProcessor,
  private val navigationWorkProcessor: NavigationWorkProcessor,
     stateCommunicator : HomeStateCommunicator,

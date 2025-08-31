@@ -1,5 +1,6 @@
 package com.example.timeplannerapp.application
 
+import com.example.data.di.CoreDataModule
 import com.example.impl.di.EditorModule
 import com.example.impl.di.HomeModules
 import com.example.impl.di.SettingModules
@@ -18,6 +19,7 @@ class TimePlannerApplication : BaseApplication() {
             androidContext(this@TimePlannerApplication)
             modules(
                 CoreUtilModules.provideCoreUtilDep() +
+                        CoreDataModule.provideDependencies() +
                         AppModules.provideAppModules() +
                         HomeModules.provideHomeDep() +
                         SettingModules.provideSettingDep() +

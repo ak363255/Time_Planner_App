@@ -6,7 +6,7 @@ import com.example.impl.domain.common.TimeTaskStatusChecker
 import com.example.impl.presentation.models.schedules.TimeTaskUi
 import com.example.utils.managers.DateManager
 
-interface TimeTaskStatusController {
+ interface TimeTaskStatusController {
     fun updateStatus(timeTask : TimeTaskUi): TimeTaskUi
     class Base(
         private val statusManager: TimeTaskStatusChecker,

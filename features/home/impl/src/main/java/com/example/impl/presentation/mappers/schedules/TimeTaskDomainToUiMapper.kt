@@ -12,7 +12,7 @@ import com.example.utils.functional.ParameterizedMapper
 import com.example.utils.functional.TimeRange
 import com.example.utils.managers.DateManager
 
-interface TimeTaskDomainToUiMapper : ParameterizedMapper<TimeTask, TimeTaskUi, Boolean>{
+ interface TimeTaskDomainToUiMapper : ParameterizedMapper<TimeTask, TimeTaskUi, Boolean>{
     class Base (
         private val dateManager : DateManager,
         private val statusManager : TimeTaskStatusChecker
@@ -55,7 +55,7 @@ fun TaskNotifications.mapToUi() = TaskNotificationsUi(
     beforeEnd = beforeEnd,
 )
 
-fun TimeTaskUi.mapToDomain() = TimeTask(
+internal fun TimeTaskUi.mapToDomain() = TimeTask(
     key = key,
     date = date,
     timeRange = TimeRange(startTime, endTime),

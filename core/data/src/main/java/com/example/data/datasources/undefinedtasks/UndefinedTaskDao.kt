@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
+import com.example.data.models.tasks.UndefinedTaskDetails
 import com.example.data.models.tasks.UndefinedTaskEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -13,7 +14,7 @@ interface UndefinedTasksDao {
 
     @Query("SELECT * FROM undefinedTasks")
     @Transaction
-    fun fetchAllUndefinedTasks(): Flow<List<UndefinedTaskEntity>>
+    fun fetchAllUndefinedTasks(): Flow<List<UndefinedTaskDetails>>
 
     @Insert(entity = UndefinedTaskEntity::class, onConflict = OnConflictStrategy.REPLACE)
     suspend fun addOrUpdateUndefinedTasks(entity: List<UndefinedTaskEntity>)

@@ -56,7 +56,7 @@ import java.util.Date
 import java.util.Locale
 
 @Composable
-fun HomeContent(
+internal fun HomeContent(
     state : HomeViewState,
     modifier : Modifier = Modifier,
     onChangeDate : (Date)->Unit,
@@ -160,7 +160,7 @@ fun HomeDateChooser(
 }
 
 @Composable
-fun TimeTasksSection(
+internal fun TimeTasksSection(
     modifier : Modifier = Modifier,
     listState : LazyListState = rememberLazyListState(),
     dateStatus : DailyScheduleStatus?,

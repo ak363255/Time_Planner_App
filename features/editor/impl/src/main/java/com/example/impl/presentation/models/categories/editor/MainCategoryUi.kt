@@ -1,4 +1,4 @@
-package com.example.impl.presentation.models.categories
+package com.example.impl.presentation.models.categories.editor
 
 import android.os.Parcelable
 import androidx.compose.runtime.Composable
@@ -9,7 +9,7 @@ import com.example.presentation.ui.theme.tokens.TimePlannerStrings
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class MainCategoryUi(
+ data class MainCategoryUi(
     val id : Int = 0,
     val customName : String? = null,
     val defaultType : DefaultCategoryType? = DefaultCategoryType.EMPTY
@@ -25,3 +25,4 @@ data class MainCategoryUi(
         false -> defaultType?.mapToName()
     }
 }
+//2

@@ -24,7 +24,7 @@ import java.util.Date
 import kotlin.reflect.KClass
 
 @Parcelize
-data class HomeViewState(
+ data class HomeViewState(
     val currentDate: Date? = null,
     val dateStatus : DailyScheduleStatus? = null,
     val taskViewStatus : ViewToggleStatus = ViewToggleStatus.COMPACT,
@@ -33,25 +33,25 @@ data class HomeViewState(
 ): BaseViewState
 
 sealed class HomeEvent : BaseEvent{
-    data object Init : HomeEvent()
-    data object CreateSchedule : HomeEvent()
-    data object PressOverviewButton : HomeEvent()
-    data class LoadSchedule(val date : Date?) : HomeEvent()
-    data class PressAddTimeTaskButton(val startTime : Date,val endTime : Date): HomeEvent()
-    data class PressEditTimeTaskButton(val timeTask : TimeTaskUi) : HomeEvent()
-    data class ChangeTaskDoneStateButton(val timeTask : TimeTaskUi) : HomeEvent()
-    data class TimeTaskShiftUp(val timeTask : TimeTaskUi): HomeEvent()
-    data class TimeTaskShiftDown(val timeTask : TimeTaskUi) : HomeEvent()
-    data class PressViewToggleButton(val status : ViewToggleStatus) : HomeEvent()
+    internal data object Init : HomeEvent()
+    internal data object CreateSchedule : HomeEvent()
+    internal data object PressOverviewButton : HomeEvent()
+    internal data class LoadSchedule(val date : Date?) : HomeEvent()
+    internal data class PressAddTimeTaskButton(val startTime : Date,val endTime : Date): HomeEvent()
+    internal data class PressEditTimeTaskButton(val timeTask : TimeTaskUi) : HomeEvent()
+    internal data class ChangeTaskDoneStateButton(val timeTask : TimeTaskUi) : HomeEvent()
+    internal data class TimeTaskShiftUp(val timeTask : TimeTaskUi): HomeEvent()
+    internal data class TimeTaskShiftDown(val timeTask : TimeTaskUi) : HomeEvent()
+    internal data class PressViewToggleButton(val status : ViewToggleStatus) : HomeEvent()
 }
 sealed class HomeEffect : BaseUiEffect{
-    data class ShowError(val failures : HomeFailures): HomeEffect()
-    data class NavigateToEditorCreator(val timeTask : TimeTask) : HomeEffect()
+    internal data class ShowError(val failures : HomeFailures): HomeEffect()
+    internal data class NavigateToEditorCreator(val timeTask : TimeTask) : HomeEffect()
 }
 sealed class HomeAction : BaseAction{
-    data class SetupSettings(val settings: TaskSettings) : HomeAction()
-    data class UpdateSchedule(val schedule : ScheduleUi) : HomeAction()
-    data class SetEmptySchedule (val date : Date,val status : DailyScheduleStatus?) : HomeAction()
+    internal data class SetupSettings(val settings: TaskSettings) : HomeAction()
+    internal data class UpdateSchedule(val schedule : ScheduleUi) : HomeAction()
+    internal data class SetEmptySchedule (val date : Date,val status : DailyScheduleStatus?) : HomeAction()
 }
 @Serializable
 @Parcelize

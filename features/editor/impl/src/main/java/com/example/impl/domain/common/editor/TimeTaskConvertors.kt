@@ -1,4 +1,4 @@
-package com.example.impl.domain.common
+package com.example.impl.domain.common.editor
 
 import com.example.domain.entities.Template.Template
 import com.example.domain.entities.schedules.TimeTask

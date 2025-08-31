@@ -37,7 +37,7 @@ import java.util.Date
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(
+ fun HomeScreen(
     screenModel: HomeScreenModel,
     initialState: HomeViewState = HomeViewState()
 ) {

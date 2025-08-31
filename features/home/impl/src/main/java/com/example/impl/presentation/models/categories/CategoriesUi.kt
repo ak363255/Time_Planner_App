@@ -4,7 +4,8 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class CategoriesUi (
+internal data class CategoriesUi (
     val mainCategory: MainCategoryUi,
     val subCategories : List<SubCategoryUi>
 ): Parcelable
+//2 home

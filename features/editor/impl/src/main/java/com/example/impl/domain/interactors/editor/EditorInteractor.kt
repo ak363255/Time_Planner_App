@@ -1,4 +1,4 @@
-package com.example.impl.domain.interactors
+package com.example.impl.domain.interactors.editor
 
 import com.example.impl.domain.entities.EditModel
 import com.example.impl.domain.repositories.EditorRepository

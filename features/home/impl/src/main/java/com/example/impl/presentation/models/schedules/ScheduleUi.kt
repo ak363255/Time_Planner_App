@@ -5,7 +5,7 @@ import com.example.domain.entities.schedules.DailyScheduleStatus
 import kotlinx.parcelize.Parcelize
 import java.util.Date
 @Parcelize
-data class ScheduleUi(
+ data class ScheduleUi(
     val date : Date,
     val dateStatus : DailyScheduleStatus,
     val timeTasks : List<TimeTaskUi>,

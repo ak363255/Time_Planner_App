@@ -13,6 +13,10 @@ import org.koin.dsl.module
 
 internal object HomePresentationComponents{
     val homeFeaturePresentationDi = module {
+
+        single<HomeStateCommunicator> {
+            HomeStateCommunicator.Base()
+        }
         single<TimeTaskDomainToUiMapper> {
             TimeTaskDomainToUiMapper.Base(
                 dateManager = get(),

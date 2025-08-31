@@ -1,7 +1,6 @@
 package com.example.timeplannerapp.di.modules.presentation_module
 
 import com.example.impl.presentation.ui.home.screenModel.HomeEffectCommunicator
-import com.example.impl.presentation.ui.home.screenModel.HomeStateCommunicator
 import com.example.presentation.ui.notifications.AlarmReceiverProvider
 import com.example.presentation.ui.notifications.TimeTaskAlarmManager
 import com.example.timeplannerapp.presentation.receiver.AlarmReceiverProviderImpl
@@ -36,9 +35,6 @@ object AppPresentationModule {
                 )
             }
 
-            single<HomeStateCommunicator> {
-                HomeStateCommunicator.Base()
-            }
             single<HomeEffectCommunicator> {
                 HomeEffectCommunicator.Base()
             }

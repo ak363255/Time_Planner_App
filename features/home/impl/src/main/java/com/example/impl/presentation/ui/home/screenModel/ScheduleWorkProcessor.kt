@@ -37,7 +37,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import java.util.Date
 
-interface ScheduleWorkProcessor : FlowWorkProcessor<ScheduleWorkCommand, HomeAction, HomeEffect> {
+ interface ScheduleWorkProcessor : FlowWorkProcessor<ScheduleWorkCommand, HomeAction, HomeEffect> {
     class Base(
         private val scheduleInteractor: ScheduleInteractor,
         private val timeShiftInteractor: TimeShiftInteractor,
@@ -177,11 +177,11 @@ interface ScheduleWorkProcessor : FlowWorkProcessor<ScheduleWorkCommand, HomeAct
 }
 
 sealed class ScheduleWorkCommand : WorkCommand {
-    data object SetupSettings : ScheduleWorkCommand()
-    data class LoadScheduleByDate(val date: Date?) : ScheduleWorkCommand()
-    data class CreateSchedule(val date: Date) : ScheduleWorkCommand()
-    data class ChangeTaskDoneState(val date: Date, val key: Long) : ScheduleWorkCommand()
-    data class ChangeTaskViewStatus(val status: ViewToggleStatus) : ScheduleWorkCommand()
-    data class TimeTaskShiftUp(val timeTask: TimeTaskUi) : ScheduleWorkCommand()
-    data class TimeTaskShiftDown(val timeTask: TimeTaskUi) : ScheduleWorkCommand()
+    internal data object SetupSettings : ScheduleWorkCommand()
+    internal data class LoadScheduleByDate(val date: Date?) : ScheduleWorkCommand()
+    internal data class CreateSchedule(val date: Date) : ScheduleWorkCommand()
+    internal data class ChangeTaskDoneState(val date: Date, val key: Long) : ScheduleWorkCommand()
+    internal data class ChangeTaskViewStatus(val status: ViewToggleStatus) : ScheduleWorkCommand()
+    internal data class TimeTaskShiftUp(val timeTask: TimeTaskUi) : ScheduleWorkCommand()
+    internal data class TimeTaskShiftDown(val timeTask: TimeTaskUi) : ScheduleWorkCommand()
 }

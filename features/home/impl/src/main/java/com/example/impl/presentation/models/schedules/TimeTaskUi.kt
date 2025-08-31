@@ -10,7 +10,7 @@ import com.example.utils.functional.TimeRange
 import kotlinx.parcelize.Parcelize
 import java.util.Date
 @Parcelize
-data class TimeTaskUi(
+ data class TimeTaskUi(
     val key: Long = 0L,
     val executionStatus: TimeTaskStatus = TimeTaskStatus.PLANNED,
     val date: Date,

@@ -115,7 +115,7 @@ fun StartTaskTimeTitle(
 }
 
 @Composable
-fun LazyItemScope.TimeTaskViewItem(
+internal fun LazyItemScope.TimeTaskViewItem(
     modifier: Modifier = Modifier,
     timeTask: TimeTaskUi,
     onEdit: (TimeTaskUi) -> Unit,
@@ -161,7 +161,7 @@ fun LazyItemScope.TimeTaskViewItem(
 }
 
 @Composable
-fun LazyItemScope.RunningTimeTaskItem(
+internal fun LazyItemScope.RunningTimeTaskItem(
     modifier: Modifier = Modifier,
     model: TimeTaskUi,
     onMoreButtonClick: (Long) -> Unit,
@@ -228,7 +228,7 @@ fun LazyItemScope.RunningTimeTaskItem(
 }
 
 @Composable
-fun LazyItemScope.PlannedTimeTaskItem(
+internal fun LazyItemScope.PlannedTimeTaskItem(
     modifier: Modifier = Modifier,
     model: TimeTaskUi,
     isCompactView: Boolean = true,
@@ -289,7 +289,7 @@ fun EndTaskTimeTitle(
 }
 
 @Composable
-fun LazyItemScope.CompletedTimeTaskItem(
+internal fun LazyItemScope.CompletedTimeTaskItem(
     modifier: Modifier = Modifier,
     model: TimeTaskUi,
     isCompactView: Boolean = true,
