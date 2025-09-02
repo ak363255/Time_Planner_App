@@ -17,7 +17,7 @@ import com.example.utils.platform.screenmodel.work.WorkCommand
 import com.example.utils.platform.screenmodel.work.WorkProcessor
 import com.example.utils.platform.screenmodel.work.WorkResult
 
-internal interface TimeTaskWorkProcessor : WorkProcessor<TimeTaskWorkCommand, EditorAction, EditorEffect>{
+ interface TimeTaskWorkProcessor : WorkProcessor<TimeTaskWorkCommand, EditorAction, EditorEffect>{
     class Base(
         private val timeTaskInteractor : TimeTaskInteractor,
         private val undefinedTasksInteractor : UndefinedTasksInteractor,
@@ -92,7 +92,7 @@ internal interface TimeTaskWorkProcessor : WorkProcessor<TimeTaskWorkCommand, Ed
 
 }
 
-internal sealed class TimeTaskWorkCommand : WorkCommand{
+ sealed class TimeTaskWorkCommand : WorkCommand{
     internal object LoadUndefinedTasks : TimeTaskWorkCommand()
     internal data class AddOrSaveModel(val editModel : EditModelUi): TimeTaskWorkCommand()
     internal data class DeleteModel(val editModel : EditModelUi) : TimeTaskWorkCommand()

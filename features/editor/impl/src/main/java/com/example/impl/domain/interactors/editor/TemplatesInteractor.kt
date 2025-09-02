@@ -7,7 +7,7 @@ import com.example.impl.domain.entities.EditorFailures
 import com.example.utils.functional.DomainResult
 import kotlinx.coroutines.flow.first
 //editor
-internal interface TemplatesInteractor {
+ interface TemplatesInteractor {
 
     suspend fun fetchTemplates(): DomainResult<EditorFailures, List<Template>>
     suspend fun updateTemplate(template: Template): DomainResult<EditorFailures, Unit>

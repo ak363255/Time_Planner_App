@@ -1,5 +1,6 @@
 package com.example.impl.presentation.ui.editor.processors
 
+import com.example.domain.entities.schedules.TimeTask
 import com.example.impl.domain.common.editor.convertToEditModel
 import com.example.impl.domain.common.editor.convertToTemplate
 import com.example.impl.domain.interactors.editor.CategoriesInteractor
@@ -24,7 +25,7 @@ import com.example.utils.platform.screenmodel.work.WorkProcessor
 import com.example.utils.platform.screenmodel.work.WorkResult
 import java.util.Date
 
-internal interface EditorWorkProcessor : WorkProcessor<EditorWorkCommand, EditorAction, EditorEffect>{
+ interface EditorWorkProcessor : WorkProcessor<EditorWorkCommand, EditorAction, EditorEffect>{
     class Base(
         private val editorInteractor: EditorInteractor,
         private val categoriesInteractor: CategoriesInteractor,
@@ -37,6 +38,7 @@ internal interface EditorWorkProcessor : WorkProcessor<EditorWorkCommand, Editor
             is EditorWorkCommand.ApplyUndefinedTask -> applyUndefinedTaskWork(command.task,command.model)
             EditorWorkCommand.LoadSendEditModel -> loadSendModelWork()
             EditorWorkCommand.LoadTemplates -> loadTemplatesWork()
+            is EditorWorkCommand.SaveSendEditModel -> saveSendModel(timeTask = command.timeTask)
         }
         private suspend fun loadSendModelWork(): WorkResult<EditorAction, EditorEffect> {
             val editModel = editorInteractor.fetchEditModel().mapToUi()
@@ -46,6 +48,13 @@ internal interface EditorWorkProcessor : WorkProcessor<EditorWorkCommand, Editor
                 )
                 is Either.Left -> EffectResult(EditorEffect.ShowError(result.data))
             }
+        }
+
+        private fun saveSendModel(timeTask: TimeTask?): WorkResult<EditorAction, EditorEffect>{
+            if(timeTask != null){
+                editorInteractor.sendEditModel(timeTask.convertToEditModel(null,null));
+            }
+            return ActionResult(EditorAction.Navigate)
         }
 
         private suspend fun loadTemplatesWork(): WorkResult<EditorAction, EditorEffect> {
@@ -100,6 +109,8 @@ internal interface EditorWorkProcessor : WorkProcessor<EditorWorkCommand, Editor
 sealed class EditorWorkCommand : WorkCommand{
     internal data object LoadSendEditModel : EditorWorkCommand()
     internal data object LoadTemplates : EditorWorkCommand()
+
+    internal data class SaveSendEditModel(val timeTask: TimeTask): EditorWorkCommand()
     internal data class AddSubCategory(val name : String ,val mainCategory: MainCategoryUi):
         EditorWorkCommand()
     internal data class AddTemplate(val editModel : EditModelUi): EditorWorkCommand()

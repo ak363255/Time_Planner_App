@@ -6,7 +6,7 @@ import com.example.utils.validation.ValidateResult
 import com.example.utils.validation.Validator
 import kotlinx.parcelize.Parcelize
 
-internal interface CategoryValidator : Validator<MainCategoryUi, CategoryValidateError>{
+ interface CategoryValidator : Validator<MainCategoryUi, CategoryValidateError>{
     class Base(): CategoryValidator{
         override fun validate(data: MainCategoryUi): ValidateResult<CategoryValidateError> {
             return if(data.id ==0){

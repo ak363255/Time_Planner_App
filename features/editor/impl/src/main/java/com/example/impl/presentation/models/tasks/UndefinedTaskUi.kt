@@ -10,7 +10,7 @@ import com.example.utils.functional.TimeRange
 import kotlinx.parcelize.Parcelize
 import java.util.Date
 @Parcelize
-internal data class UndefinedTaskUi(
+ data class UndefinedTaskUi(
     val id:Long = 0L,
     val createdAt : Date? = null,
     val deadline : Date? = null,

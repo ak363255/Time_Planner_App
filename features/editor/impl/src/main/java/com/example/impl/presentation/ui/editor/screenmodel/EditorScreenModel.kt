@@ -1,6 +1,11 @@
 package com.example.impl.presentation.ui.editor.screenmodel
 
+import android.util.Log
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.navigation.toRoute
+import com.example.domain.entities.schedules.TimeTask
 import com.example.impl.presentation.models.editmodel.EditModelUi
 import com.example.impl.presentation.ui.editor.contract.EditorAction
 import com.example.impl.presentation.ui.editor.contract.EditorEffect
@@ -10,18 +15,22 @@ import com.example.impl.presentation.ui.editor.processors.EditorWorkCommand
 import com.example.impl.presentation.ui.editor.processors.EditorWorkProcessor
 import com.example.impl.presentation.ui.editor.processors.TimeTaskWorkCommand
 import com.example.impl.presentation.ui.editor.processors.TimeTaskWorkProcessor
+import com.example.presentation.ui.contract.MainRoute
 import com.example.utils.extensions.duration
+import com.example.utils.functional.deserialize
 import com.example.utils.managers.CoroutineManager
 import com.example.utils.platform.screenmodel.BaseViewModel
 import com.example.utils.platform.screenmodel.EmptyDeps
 import com.example.utils.platform.screenmodel.work.BackgroundWorkKey
 import com.example.utils.platform.screenmodel.work.WorkScope
+import kotlinx.coroutines.launch
 
-internal class EditorScreenModel(
+class EditorScreenModel(
  private val timeTaskWorkProcessor: TimeTaskWorkProcessor,
     private val editorWorkProcessor: EditorWorkProcessor,
     private val timeRangeValidator : TimeRangeValidator,
     private val categoryValidator : CategoryValidator,
+    private val saveStateHandle : SavedStateHandle,
     stateCommunicator : EditorStateCommunicator,
     effectCommunicator : EditorEffectCommunicator,
     coroutineManager: CoroutineManager
@@ -30,6 +39,19 @@ internal class EditorScreenModel(
     effectCommunicator = effectCommunicator,
     coroutineManager = coroutineManager
 ){
+    init {
+        readEditModel()
+    }
+
+    private fun readEditModel(){
+        viewModelScope.launch {
+            val page = saveStateHandle.toRoute<MainRoute.NavigateToEditorCreator>()
+            if(page.timeTask.isNotEmpty()){
+                val timeTask = deserialize<TimeTask>( saveStateHandle.toRoute<MainRoute.NavigateToEditorCreator>().timeTask)
+                editorWorkProcessor.work(EditorWorkCommand.SaveSendEditModel(timeTask))
+            }
+        }
+    }
     override fun init(deps: EmptyDeps) {
         if(!isInitialize.get()){
             super.init(deps)

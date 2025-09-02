@@ -8,7 +8,7 @@ import com.example.impl.presentation.models.categories.editor.SubCategoryUi
 import kotlinx.parcelize.Parcelize
 import java.util.Date
 @Parcelize
-internal data class TemplateUi(
+ data class TemplateUi(
     val templateId :Int,
     val startTime : Date,
     val endTime : Date,

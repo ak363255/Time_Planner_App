@@ -54,7 +54,7 @@ sealed class EditorEvent : BaseEvent{
     internal data object PressBackButton : EditorEvent()
 }
 @Parcelize
-internal data class EditorViewState(
+ data class EditorViewState(
     val editModel : EditModelUi? = null,
      val categories : List<CategoriesUi> = emptyList(),
     val templates : List<TemplateUi>? = null,

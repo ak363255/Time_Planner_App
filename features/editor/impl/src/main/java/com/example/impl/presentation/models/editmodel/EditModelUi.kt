@@ -9,7 +9,7 @@ import com.example.utils.functional.TimeRange
 import kotlinx.parcelize.Parcelize
 import java.util.Date
 @Parcelize
-internal data class EditModelUi(
+ data class EditModelUi(
     val key : Long = 0L,
     val date : Date,
     val timeRange: TimeRange,

@@ -23,6 +23,8 @@ import com.example.domain.entities.schedules.TimeTask
 import com.example.domain.repository.TasksSettingsRepository
 import com.example.domain.repository.ThemeSettingsRepository
 import com.example.impl.domain.common.SettingsEitherWrapper
+import com.example.impl.presentation.ui.editor.screenmodel.EditorScreenModel
+import com.example.impl.presentation.ui.editor.views.EditorScreen
 import com.example.presentation.ui.contract.MainRoute
 import com.example.presentation.ui.theme.tokens.MainNavController
 import com.example.timeplannerapp.domain.interactors.SettingsInteractor
@@ -41,6 +43,7 @@ import com.example.utils.platform.screen.ScreenContent
 import com.example.utils.platform.screen.ScreenScope
 import org.koin.android.ext.android.getKoin
 import org.koin.androidx.compose.koinViewModel
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -77,13 +80,10 @@ class MainActivity : ComponentActivity() {
                                 TabScreen(tabViewModel = koinViewModel())
                             }
                             composable<MainRoute.NavigateToEditorCreator> {backStackEntry ->
-
-                                val timeTask = backStackEntry.arguments?.getString("timeTask")
-                                val timeTaskModel : TimeTask? = if(timeTask != null) deserialize(timeTask) else null
-                                Box(modifier = Modifier.fillMaxSize().background(color = Color.Red)){
-                                 //   Text(text = " ${user?.timeRange?.from} null",color = Color.Black, fontSize = 12.sp)
-
-                                }
+                                val editorScreenModel : EditorScreenModel = koinViewModel()
+                                EditorScreen(
+                                    screenModel = editorScreenModel
+                                )
                             }
                         }
                     }

@@ -1,5 +1,6 @@
 package com.example.impl.presentation.ui.home.views
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -117,6 +118,7 @@ import java.util.Date
         handleEffect {
             when(it){
                 is HomeEffect.NavigateToEditorCreator -> {
+                    Log.d("VIEW MODEL","Editor Screen Called");
                     mainNavController.navigate(MainRoute.NavigateToEditorCreator(it.timeTask.serialize()))
                     //navController.navigate(HomePageRoute.EditorCreatorScreen(it.timeTask.serialize()))
                 }
